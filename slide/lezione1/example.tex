@@ -1,0 +1,216 @@
+\begin{frame}
+	\setbeamercolor{block body}{bg = yellow}
+	\begin{block}{}
+		\begin{center}
+			{\large\textbf{Corso di base JAVA}}\\
+			\itshape{Mauro Donadeo}\\
+			mail: mauro.donadeo@gmail.com
+		\end{center}
+	\end{block}
+	\setbeamercolor{block body}{bg = white}
+	\begin{block}{}	
+		\begin{center}
+			\large{INTRODUZIONE}
+			\includegraphics[width = 30mm]{images/java-logo.jpg}
+		\end{center}
+	\end{block}	
+\end{frame}
+
+\section{Informazioni generali}
+\subsection{Corso}
+\begin{frame}
+\frametitle{Informazioni generali}
+\begin{block}{Orari lezioni}
+\begin{itemize}
+\item Martedì 27 marzo {\itshape ore 13:30 - 18:30};
+\item Mercoledì 28 marzo {\itshape ore 14:00 - 19:00};
+\item Venerdì 30 marzo {\itshape 9:30 - 13:30};
+\item Martedì 3 aprile {\itshape 13:30 - 18:30};
+\item Giovedì 5 aprile {\itshape 13:30 - 18:30};
+\end{itemize}
+\end{block}
+\begin{block}{Dove}
+Tutte le lezioni si svogeranno all'interno dell'aula CAR.
+\end{block}
+\end{frame}
+
+\subsection{About me}
+\begin{frame}
+\frametitle{About me}
+\begin{block}{}
+Laureato in ingengeria informatica ad ottobre del 2011. Titolo della
+tesi: \textit{Realizzazionde di un sistema di video conferenza 3D utilizzando 
+il sistema di video conferenza MS Kinect}.
+\end{block}
+
+\begin{block}{Posizione attuale}
+\begin{itemize}
+\item Collaboro con il Prof. Gamberini all'interno di HTLab (htlab.psy.unipd.it);
+\item Gesture recognition su dispositivi touchless all'inteno del progetto europeo
+CEEDs (ceeds-project.eu);
+\item Misure di accuracy di più Kinect che funzionano contemporaneamente. Sempre con 
+il fine di riconoscere gesture.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Cos'è un programma}
+\begin{frame}
+\frametitle{Cos'è un programma}
+\begin{block}{Il computer}
+Tutti sappiamo che un computer è una macchina che: 
+\begin{itemize}
+\item \textbf{memoriza dati} (numeri, parole, immagini suoni...);
+\item \textbf{interagisce con dispositivi} (schermo, tastiere, mouse, kinect...)
+\item \textbf{esegue programmi}.
+\end{itemize}
+\end{block}
+\begin{block}{I programmi}
+I programmi sono \textbf{sequenze} di \textit{istruzioni} che il \textbf{computer}
+\textit{esegue}, e di \textit{decisioni} che il \textbf{computer} prende per svolgere
+una certa attività.
+\end{block}
+\end{frame}
+\subsection{Cos'è un programma}
+\begin{frame}
+\begin{block}{}
+Nonostante i programmi sono molto sofisticati e svolgano funzioni molto complesse, le 
+istruzioni di cui sono composti sono \textbf{molto elementari} per esempio:
+\begin{itemize}
+\item estrarre un numero da una posizione di memoria;
+\item inviare un documento in stampa;
+\item accendere un punto rosso in una pos. determinata dello schermo;
+\item se un numero è negativo, allora si svolge una funzione più tosto che un altra.
+\end{itemize}
+\end{block}
+\begin{block}{Programmazione}
+Un programma descrive al computer in estremo dettaglio la sequenza necessaria di 
+passi per svolgere un particolare compito:
+\begin{center}
+\itshape{L'attività di progettare e \textbf{realizzare un programma} è detta \alert{programmazione}}
+\end{center}
+\end{block}
+\end{frame}
+
+\subsection{Cos'è un algoritmo}
+\begin{frame}
+\begin{block}{Problemi}
+Quale dei seguenti due problemi può essere risolto da un computer:
+\begin{itemize}
+\item Dato un insieme di fotografie di paesaggi, qual'è il più \textCl{rilassante}?
+\item Avete un deposito di ventimila euro in un conto bancario che produce il 5%
+di interessi all'anno, capitalizzati annualmente, quanti anni occorrono affinché 
+il saldo del conto arrivi al doppio della cifra iniziale?
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{}
+Il primo problema non può essere risolto dal computer. \textbf{\textCl{Perché}}?
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+\begin{itemize}
+\item \textbf{\textit{Un computer può risolvere soltanto problemi che potrebbero essere risolti anche manualmente}}:
+\begin{itemize}
+\item \textCl{E' solo molto più veloce, non si annoia, e non fa errori (se programmato nella maniera giusta)}
+\end{itemize}
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{Cos'è un algoritmo}
+Si dice \textCl{algoritmo} la \alert{descrizione} di un metodo di soluzione di un problema che:
+\begin{itemize}
+\item sia eseguibile;
+\item sia priva di ambiguità;
+\item arrivi ad una conclusione in un tempo finito.
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{}
+\textit{Un computer può risolvere soltanto quei problemi per i quali sia noto un algoritmo}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{A cosa servono gli algoritmi}
+\begin{block}{}
+\begin{itemize}
+\item L'identificazione di un algoritmo è il requisito indispensabile per risolvere un problema con il computer;
+\item la scrittura di un problema con il computer consiste,in genere, nella traduzione di un algoritmo in qualche
+\textCl{linguaggio di programmazione};
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{}
+\begin{center}
+\large{\textbf{Prima di scrivere un programma è necessario individuare un algoritmo}}
+\end{center}
+\end{block}
+\end{frame}
+
+\section{Il linguaggio di programmazione JAVA}
+\begin{frame}
+\begin{block}{}
+\begin{center}
+\large{\textCl{Il linguaggio di programmazione JAVA}}
+\end{center}
+\end{block}
+\end{frame}
+
+\subsection{Il linguaggio JAVA}
+\subsection{Un pò di storia}
+\begin{frame}
+\begin{block}{}
+\begin{itemize}
+\item 1954-1957 nasce il primo linguaggio di programmazione: \itshape{FORTRAN}
+\item 1959 COBOL dove la B sta per Business. Infatti divenne uno dei primi linguaggi di 
+programmazione orientato per le applicazioni business;
+\item 1972 Dennis Ritchie fonda il linguaggio di programmazione C. E' molto potente come linguaggio di 
+programmazione. 
+\item Bjarne Strousturp sviluppo il C++ differente dal suo predecessore C++ è uno dei primi linguaggi
+\textit{orientato a gli oggetti} che rappresenta un grande passo in avanti.
+\item 1995 Sun Microsystem rilascia la prima versione ufficiale di JAVA. Aggiunge al C++ il concetto
+\textit{Write Once, Run Anywhere}.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection{Programmazione orientata ad oggetti (OOP)}
+\begin{frame}
+\begin{block}{}
+Java è un linguaggio orientato agli oggetti. Cosa vuol dire?
+\end{block}
+\begin{itemize}
+\item In un linguaggio orientato agli oggetti puoi organizzare il tuo lavoro in \textCl{Oggetti} e \textCl{Classi}.
+\end{itemize}
+Esempio: immaginiamo di scrivere un programma che tiene traccia delle case di un nuovo condominio che si sta costruendo.
+\begin{block}{}
+Ogni casa è differente essenzialmente dalle altre per piccoli accorgimenti ad es.: per il suo interno, colore delle pareti, stile della cucina, tipo di bagno. Con JAVA ogni casa è un \textbf{\alert{OGGETTO}}.
+\end{block}
+\begin{block}{}
+Sebbene le case differiscono leggermente una dall'altra la lista delle caratteristiche è sempre la stessa. Quindi 
+all'interno del programma orientato agli oggetti ci sarà questa lista che contiene tutte le caratteristiche
+della casa. La lista è chiamata \textbf{\alert{CLASSE}}
+\end{block}
+\end{frame}
+
+\subsection*{Cosa c'è di buono nella programmazione ad oggetti}
+\begin{frame}
+\begin{block}{}
+\begin{center}
+\itshape{Quindi esiste una reale relazione tra classi ed oggetti. Il programmatore definisce una classe, e dalla definizione
+delle classi, il computer crea oggetti individuali.}
+\end{center}
+\end{block}
+\pause
+\begin{block}{}
+Supponiamo ora che il progetto cambi! Che la casa passa da un piano a due piani. E che le stanze al secondo piano per metà sono 
+a tre e quattro stanze da letto.
+\end{block}
+\pause
+\begin{block}{}
+Bisogna buttare via tutto?
+\end{block}
+\end{frame}
