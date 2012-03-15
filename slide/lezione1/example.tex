@@ -214,3 +214,355 @@ a tre e quattro stanze da letto.
 Bisogna buttare via tutto?
 \end{block}
 \end{frame}
+
+\subsection*{SuperClass, SubClass, ExentdedClass}
+\begin{frame}
+\begin{block}{La potenza di Java}
+Non bisogna buttare via nulla. Quello che è stato progettato fino ad adesso diventerà la nostra \textit{principale}. Sarà la nostra \alert{SUPERCLASS}.
+\end{block}
+\begin{block}{}
+\begin{itemize}
+\item Verrà creata una classe per le case con tre e quattro camere da letto. Che \textit{erediteranno} le caratteristiche del progetto originale 
+\item Si può inoltre dire che le classi appena create \textit{estendono} la classe originale.
+\item In questo modo verrà creato un rapporto di parentela tra le classi. Le classi per le 3 e 4 stanze da letto sono figlie della classe originale.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[scale = 0.5]{images/superclass.jpg}
+\end{frame}
+
+\section*{Installazione di Java}
+\begin{frame}
+\begin{block}{Prerequisiti}
+Per installare la \textCl{Java Development Kit (JDK)} non sono richieste grosse prestazioni da parte della macchina.
+Unico prerequisito è avere i permessi anche di amministratore della macchina in quanto verranno modificate le variabili
+d'ambiente.
+\end{block}
+\begin{block}{}
+Verrà spiegato un metodo per installare la JDK per sistemi windows. Per chi utilizza \textCl{Linux o Mac OsX} posso dare dei 
+consigli in privato. In linea di massima chi utilizza linux e mac comunque deve avere i permessi di amministratore della
+macchina.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+\begin{enumerate}
+\item Andate sul sito: \texttt{\footnotesize{http://www.oracle.com/technetwork/java\\/javase/downloads/index.html}} 
+dove scaricherete la versione Standard Edition. Effettuate anche il download della documentazione di Java;
+\item Double-click sulla icona della JDK;
+\item Tra le varie features che ti permette di installare assicuratevi che sia selezionato
+\begin{itemize}
+\item Development tools;
+\item Public Java Runtime Enviroment.
+\end{itemize}
+\end{enumerate}
+\end{block}
+\end{frame}
+\subsection*{Variabile d'ambiente 1}
+\begin{frame}
+%\begin{block}{Modifica delle variabili d'ambiente \textbf{PATH}}
+La variabile d'ambiente PATH specifica un elenco di directory separate da punto e virgola ";" in cui il sistema ricerca i file eseguibili (nell'ordine in cui sono indicate), oltre che nella directory corrente.
+%\end{block}
+%\begin{block}{}
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.3]{images/path1.png}
+\caption{\footnotesize{Tasto destro su computer-$>$Proprietà-$>$Impostazioni avanzate di sistema-$>$Avanzate}}
+\end{center}
+\end{figure}
+%\end{block}
+\end{frame}
+
+\subsection*{Variabile d'ambiente 2}
+\begin{frame}
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.3]{images/path2.png}
+\caption{\footnotesize{Aggiungete alla fine il percorso dove avete installato la vostra JDK. Solitamente è:
+C:/Programs Files/Java/jdk\_ version/bin}}
+\end{center}
+\end{figure}
+\end{frame}
+
+\subsection*{Documentazione}
+\begin{frame}
+\begin{block}{}
+Un altro dei punti di forza di JAVA è la documentazione. Create una cartella \textCl{docs} all'interno della cartella 
+principale di Java. Solitamente \texttt{C:/Programs Files/Java/jdk version/docs}. E fate un unzip della documentazione
+che avete scaricato qua. Cliccate su index.html e avrete:
+\end{block}
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{images/doc.png}
+\caption{\footnotesize{Documentazione Java. Troverete le API e la spiegazione di tutte classi già messe a disposizione da 
+SUN.}}
+\end{center}
+\end{figure}
+\end{frame}
+
+\section{IDE}
+\subsection*{Integrated development environment}
+\begin{frame}
+\begin{block}{IDE}
+Un \textit{integrated development environment} IDE (altre si conosciuto come: \textit{integrated design environment, integrated 
+debugging environment o interactive development environment}) è un'applicazione che aiuta e facilita gli sviluppatori a 
+scrivere del codice. Un IDE normalmente consiste in:
+\begin{itemize}
+\item Un editor di testo
+\item Un compilatore e/o un interprete
+\item Un tool che permetta di costruire in maniera automatica un eseguibile
+\item Un debugger.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+Esistono vari IDE che possono aiutare alla progettazione del proprio software.
+\end{block}
+\begin{figure}
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+\includegraphics[scale = 0.3]{images/geany.png}
+\caption{Geany - http://www.geany.org/}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\includegraphics[scale=0.3]{images/netbeans.jpg}
+\caption{NetBeans - http://netbeans.org/}
+\end{minipage}
+\end{center}
+\end{figure}
+\begin{figure}
+%\begin{minipage}{0.2\textwidth}
+%\centering
+\includegraphics[scale=0.3]{images/eclipse.jpg}
+\caption{Eclipse - http://www.eclipse.org/}
+%\end{minipage}
+\end{figure}
+\end{frame}
+
+\section{Il nostro primo programma}
+\subsection{Le fasi della programmazione}
+\begin{frame}{}
+\begin{block}{Le fasi della programmazione}
+La scrittura di un programma possiamo dire che si divide principalmente in 3 fasi:
+\begin{itemize}
+\item scrittura del programma (codice \textCl{sorgente})
+\item compilazione del codice sorgente che porta quindi alla creazione del codice \textCl{eseguibile}
+\item esecuzione del programma.
+\end{itemize}
+\end{block}
+\begin{block}{Individuare il compilatore Java}
+Esistono vari modi per compilare i programmi in Java: internamente all'IDE, utilizzando i comandi da tastiera con l'ausilio di una console (\textbf{è questo il nostro caso}) o tramite delle icone sullo schermo.
+\end{block}
+\end{frame}
+\begin{frame}
+\begin{block}{cmd.exe}
+Utilizzando il prompt dei comandi di Windows, grazie alle variabili d'ambiente, consente di compilare ed eseguire i programmi 
+che verranno scritti in Java. Ecco alcuni comandi utili per utilizzare:
+\begin{itemize}
+\item Per aprire il prompt dei comandi di Windows è possibile digitare all'interno di cerca \textCl{cmd.exe} o si può trovare 
+un collegamento dell'applicazione all'interno di Programmi/Accessori/Prompt dei comandi.
+\item \alert{cd} nome cartella: permette di accedere alla cartella.
+\item \alert{dir} restituisce un elenco delle cartelle presenti all'interno della cartella di cui si lancia il comando.
+\item \alert{cd ..} ritorna alla cartella precedente.
+\end{itemize}
+\end{block}
+\pause
+P.S. \textit{Se premete il tasto tab la console completerà la parola permettendovi di risparmiare tempo}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Cos'è la compilazione}
+La compilazione del \textit{codice sorgente} di un programma consente di creare un particolare tipo di formato
+di codice eseguibile, detto \textbf{bytecode} che è il codice interpretato dalla Java Virtual Machine
+\textit{JVM}.
+\end{block}
+\begin{block}{}
+\begin{itemize}
+\item \texttt{javac NomeFile.java }
+\end{itemize}
+effettua la compilazione del programma, e genera il file \textCl{NomeFile.class}
+\end{block}
+\begin{block}{}
+\textit{Il file che contiene il \textCl{bytecode} è una traduzione delle istruzioni in un linguaggio che la macchina
+interpreterà}
+\end{block}
+\end{frame}
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.4]{images/jvm.jpg}
+\end{figure}
+\begin{block}{}
+Per \textCl{eseguire} un programma si usa l'\textit{interprete} JAVA, un programma eseguibile sul computer dell'utente.
+\end{block}
+\end{frame}
+\begin{frame}
+\begin{block}{}
+\begin{itemize}
+\item Per poter interagire con il \textit{prompt} è necessario interagire con il sistema operativo, un'operazione di basso
+livello che richiede conoscenze specifiche.
+\item Queste operazioni, sono state già realizzate dagli autori del linguaggio, che hanno scritto delle classi apposite (ad esempio: \texttt{System}). 
+\item Il bytecode di queste classi si strova all'interno delle \textCl{librerie standard}, che sono raccolte di classi.
+\end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}
+\frametitle{Il processo di programmazione JAVA}
+\begin{center}
+\includegraphics[scale=0.4]{images/processo.jpg}
+\end{center}
+\end{frame}
+
+\subsection{Hello World}
+\begin{frame}
+\begin{block}{}
+Tradizionalmente, il primo programma che si scrive quando si impara un linguaggio di programmazione ha il compito di 
+visualizzare a schermo il messaggio:
+\begin{center}
+\large{\alert{Hello, World!}}
+\end{center}
+\end{block}
+\begin{block}{}
+Aprite l'editor di testo, Geany, installato sul vostro computer, e salviamo il nostro primo documento
+\textCl{HelloWorld.java}.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{HelloWorld.java}
+%\lstset{frame=shadowbox, rulesepcolor=\color{blue}}
+\begin{lstlisting}
+class HelloWorld{
+    public static void main(Strings[] args){
+        //Visualizza il messaggio sullo schermo
+        System.out.println("Hello, World");
+    }
+}
+\end{lstlisting}
+\begin{block}{Attenzione}
+\begin{itemize}
+\item maiuscole e minuscole sono considerate distinte
+\item il file \alert{deve} chiamarsi \textCl{HelloWorld.java}
+\end{itemize}
+\end{block}
+%\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item A questo punto compiliamo il nostro primo programma: 
+\begin{itemize}
+\item Prompt dei comandi
+\pause
+\item \textCl{cd} Con il percorso per arrivare alla cartella contente il file \texttt{HelloWorld.java}
+\pause
+\item \alert{javac HelloWorld.java}
+\pause
+\item se non ci sono errori il compilatore genera il file \textCl{HelloWorld.java}
+\end{itemize}
+\pause
+\item Ora \textbf{eseguiamo} il nostro primo programma:
+\begin{itemize}
+\item \alert{java HelloWorld}
+\end{itemize}
+\end{itemize}
+\pause
+Ottenuto qualcosa sullo schermo?
+\end{frame}
+
+\section*{Analisi del primo programma Java}
+\begin{frame}[fragile]
+\frametitle{Analisi del progrmma Java}
+\begin{block}{La prima riga}
+La prima riga:
+\begin{lstlisting} 
+public class HelloWorld 
+\end{lstlisting}
+definisce una nuova \textbf{classe}.
+\begin{itemize}
+\item Come abbiamo definito prima le classi rappresentano un concetto fonamentale in Java.
+\item Per il momento, consideriamo gli oggetti come \textbf{elementi da manipolare in un programma Java}.
+\end{itemize}
+\end{block} 
+\end{frame}
+\subsection*{Analisi del primo programma}
+\begin{frame}
+\begin{block}{}
+\begin{itemize}
+\item \textbf{parola chiave} \alert{public} indica che la classe \texttt{HelloWorld} può essere utilizzata da tutti
+\item Una parola chiave è una parola riservata e che non può essere usata per altri scopi.
+\item Ciascun file sorgente può contenere una sola classe pubblica il cui nome deve coincidere con il nome del file.
+\end{itemize}
+\end{block}
+
+\begin{block}{}
+\begin{itemize}
+\item Le nostre classi per ora conterranno solo dei \textCl{metodi}
+\item Un metodo serve a definire una sequenza di istruzioni che servono per descrivere come svolgere un determinato
+compito
+\item Un metodo \alert{deve} inserito all'interno di una classe, quindi le classi rappresentano il meccanismo principale di organizzazione dei programmi.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+public static void main(Strings[] args){...}
+\end{lstlisting}
+\begin{block}{main}
+con la riga di sopra viene definito il metodo \alert{main}.
+\begin{itemize}
+\item Un'applicazione Java \textbf{deve} avere un metodo \alert{main}.
+\item \texttt{static} significa il che il metodo \alert{main} \textbf{esamina e non modifica gli oggetti 
+della classe \texttt{HelloWorld} a cui appartiene}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Commenti}
+Nel programma sono presenti anche dei \textbf{commenti} che vengono \alert{ignorati} dal compilatore, ma che rendono
+il programma molto più comprensibile.
+\end{block}
+\begin{block}{}
+\begin{itemize}
+\item Un commento inizia con la doppia barra \textCl{//} e termina a fine della riga;
+\item All'interno del commento può essere scritta qualsiasi cosa; 
+\item Se un commento si estende su più righe allora è più comodo farlo iniziare con \textCl{/*} e finire con \textCl{*/}
+\end{itemize}
+\end{block}
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{images/commento.jpg}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+Gli enunciati del \textbf{corpo} di un metodo vengono eseguiti uno alla volta \alert{nella sequenza con cui sono scritti}
+\end{block}
+
+\begin{block}{}
+\begin{itemize}
+\item Ogni enunciato termina con il carattere \textbf{\alert{;}} (salvo piccole eccezioni)
+\item Il metodo \textCl{main} del nostro esempio ha un solo enunciato che termina con \textbf{\alert{;}}
+\end{itemize}
+\end{block}
+
+\begin{block}{}
+La stringa \textCl{Hello, World} può essere stampata in diverse parti: su un file, sull'\textbf{output\_standard}
+o in una finestra. In Java, l'output standard è rappresentato da un oggetto di nome \textCl{out}.
+\begin{itemize}
+\item come ogni metodo, anche gli oggetti devono essere inseriti all'interno delle classi:
+\begin{itemize}
+\item \textCl{out} è inserito all'interno della classe \texttt{System} della \alert{libreria standard}.
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
