@@ -566,3 +566,45 @@ o in una finestra. In Java, l'output standard è rappresentato da un oggetto di 
 \end{itemize}
 \end{block}
 \end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+System.out.println("Hello, World");
+\end{lstlisting}
+\begin{block}{}
+Quando si ha un oggetto, bisogna specificare cosa si vuole fare con questo:
+\begin{itemize}
+\item in questo caso vogliamo \textbf{usare un metodo} dell'oggetto \alert{out}, il metodo \textCl{println} che stampa una riga 
+di testo.
+\item la coppia di parentesi tonde racchiude le informazioni necessarie per l'esecuzione del metodo (\textbf{parametri})
+\end{itemize}
+\end{block}
+\begin{block}{Il punto}
+A volte il carattere \textbf{punto} significa \textit{usa un oggetto di una classe}, altre volte \textit{usa un metodo
+di un oggetto}
+\end{block}
+\end{frame}
+
+\subsection{Invocazione di metodo}
+\begin{frame}
+\begin{block}{Sintassi}
+\begin{center}
+\texttt{\textbf{oggetto.nomeMetodo(parametri)};}
+\end{center}
+\end{block}
+\begin{block}{}
+\begin{itemize}
+\item Viene invocato il metodo \texttt{nomeMetodo} dell'\texttt{oggetto}, fornendo dei \texttt{parametri} se sono richiesti.
+\item Se non sono richiesti parametri le parentesi vanno messe ugualmente.
+\item se ci sono più parametri questi saranno separati da una \textbf{virgola}.
+\end{itemize}
+\end{block}
+\begin{block}{println}
+\begin{itemize}
+\item Il metodo \textCl{println} può stampare anche numeri, senza indicare gli apici.
+\item C'è anche il metodo \textCl{print}, che funziona come \textCl{println} ma \textbf{non va a capo al termine 
+della stampa}.
+\end{itemize}
+\end{block}
+\end{frame}
+
