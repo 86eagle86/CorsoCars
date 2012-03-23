@@ -10,7 +10,7 @@
 	\setbeamercolor{block body}{bg = white}
 	\begin{block}{}	
 		\begin{center}
-			\large{INTRODUZIONE}
+			\large{INTRODUZIONE}\\
 			\includegraphics[width = 30mm]{images/java-logo.jpg}
 		\end{center}
 	\end{block}	
@@ -65,6 +65,7 @@ Tutti sappiamo che un computer è una macchina che:
 \item \textbf{esegue programmi}.
 \end{itemize}
 \end{block}
+\pause
 \begin{block}{I programmi}
 I programmi sono \textbf{sequenze} di \textit{istruzioni} che il \textbf{computer}
 \textit{esegue}, e di \textit{decisioni} che il \textbf{computer} prende per svolgere
@@ -98,7 +99,7 @@ passi per svolgere un particolare compito:
 Quale dei seguenti due problemi può essere risolto da un computer:
 \begin{itemize}
 \item Dato un insieme di fotografie di paesaggi, qual'è il più \textCl{rilassante}?
-\item Avete un deposito di ventimila euro in un conto bancario che produce il 5%
+\item Avete un deposito di ventimila euro in un conto bancario che produce il 5\%
 di interessi all'anno, capitalizzati annualmente, quanti anni occorrono affinché 
 il saldo del conto arrivi al doppio della cifra iniziale?
 \end{itemize}
@@ -169,7 +170,7 @@ Si dice \textCl{algoritmo} la \alert{descrizione} di un metodo di soluzione di u
 programmazione orientato per le applicazioni business;
 \item 1972 Dennis Ritchie fonda il linguaggio di programmazione C. E' molto potente come linguaggio di 
 programmazione. 
-\item Bjarne Strousturp sviluppo il C++ differente dal suo predecessore C++ è uno dei primi linguaggi
+\item Bjarne Strousturp sviluppa il C++ differente dal suo predecessore C è uno dei primi linguaggi
 \textit{orientato a gli oggetti} che rappresenta un grande passo in avanti.
 \item 1995 Sun Microsystem rilascia la prima versione ufficiale di JAVA. Aggiunge al C++ il concetto
 \textit{Write Once, Run Anywhere}.
@@ -189,6 +190,7 @@ Esempio: immaginiamo di scrivere un programma che tiene traccia delle case di un
 \begin{block}{}
 Ogni casa è differente essenzialmente dalle altre per piccoli accorgimenti ad es.: per il suo interno, colore delle pareti, stile della cucina, tipo di bagno. Con JAVA ogni casa è un \textbf{\alert{OGGETTO}}.
 \end{block}
+\pause
 \begin{block}{}
 Sebbene le case differiscono leggermente una dall'altra la lista delle caratteristiche è sempre la stessa. Quindi 
 all'interno del programma orientato agli oggetti ci sarà questa lista che contiene tutte le caratteristiche
@@ -206,8 +208,8 @@ delle classi, il computer crea oggetti individuali.}
 \end{block}
 \pause
 \begin{block}{}
-Supponiamo ora che il progetto cambi! Che la casa passa da un piano a due piani. E che le stanze al secondo piano per metà sono 
-a tre e quattro stanze da letto.
+Supponiamo ora che il progetto cambi! Che la casa passa da un piano a due piani. E le stanze da letto al secondo piano per metà
+sono delle abitazioni sono quattro e per metà sono tre.
 \end{block}
 \pause
 \begin{block}{}
@@ -235,6 +237,14 @@ Non bisogna buttare via nulla. Quello che è stato progettato fino ad adesso div
 \end{frame}
 
 \section*{Installazione di Java}
+\begin{frame}
+\begin{block}{}
+\begin{center}
+\alert{\large{INSTALLAZIONE}\\}
+\includegraphics[scale=0.7]{images/instJava.jpg}
+\end{center}
+\end{block}
+\end{frame}
 \begin{frame}
 \begin{block}{Prerequisiti}
 Per installare la \textCl{Java Development Kit (JDK)} non sono richieste grosse prestazioni da parte della macchina.
@@ -420,6 +430,19 @@ livello che richiede conoscenze specifiche.
 
 \subsection{Hello World}
 \begin{frame}
+\frametitle{Parlando nel linguaggio Java}
+\begin{block}{}
+Il linguaggio di programmazione Java, ha tutti gli aspetti di una lingua normale ad esempio come l'Italiano. Java
+ha una sua grammatica, nomi comunemente utilizzati e cose di questo genere.
+\end{block}
+\begin{block}{}
+I creatori di Java hanno pensato di dividerlo in due parti. Come l'italiano ha la sua grammatica e nomi comunemente utilizzati
+il linguaggio di programmazione Java ha le sue specifiche (\textCl{la sua grammatica}) e Application Programming Interface
+(\textCl{parole comunemente utilizzate}).
+\end{block}
+
+\end{frame}
+\begin{frame}
 \begin{block}{}
 Tradizionalmente, il primo programma che si scrive quando si impara un linguaggio di programmazione ha il compito di 
 visualizzare a schermo il messaggio:
@@ -495,7 +518,7 @@ definisce una nuova \textbf{classe}.
 \begin{block}{}
 \begin{itemize}
 \item \textbf{parola chiave} \alert{public} indica che la classe \texttt{HelloWorld} può essere utilizzata da tutti
-\item Una parola chiave è una parola riservata e che non può essere usata per altri scopi.
+\item Una \textit{parola chiave} è una parola riservata e che non può essere usata per altri scopi.
 \item Ciascun file sorgente può contenere una sola classe pubblica il cui nome deve coincidere con il nome del file.
 \end{itemize}
 \end{block}
