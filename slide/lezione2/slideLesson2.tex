@@ -1,0 +1,110 @@
+\begin{frame}
+	\setbeamercolor{block body}{bg = yellow}
+	\begin{block}{}
+		\begin{center}
+			{\large\textbf{Corso di base JAVA}}\\
+			\itshape{Mauro Donadeo}\\
+			mail: mauro.donadeo@gmail.com
+		\end{center}
+	\end{block}
+	\setbeamercolor{block body}{bg = white}
+	\begin{block}{}	
+		\begin{center}
+			\large{Scrivere i nostri primi programmi}\\
+			\includegraphics[width = 30mm]{images/java-logo.jpg}
+		\end{center}
+	\end{block}	
+\end{frame}
+
+\begin{frame}
+\frametitle{Introduzione}
+\begin{block}{Cosa tratteremo}
+In questa parte tenteremo di andare un po' più a fondo scrivendo diversi programmi e tenteremo di capire
+alcune parti specifiche del Java. Alcune cose sono specifiche del linguaggio Java, ma la maggior parte 
+sono comuni a tutti i linguaggi di programmazione.
+\end{block}
+\end{frame}
+
+\section*{Variabili}
+\subsection*{Assegnamento}
+\begin{frame}[fragile]
+\begin{block}{}
+Supponiamo di avere un conto corrente con all'interno 50.00 euro. E che riceveremo un acconto per un lavoro di 500.00 euro.
+\end{block}
+\pause
+\begin{lstlisting}
+amountCount = 50.00;
+amountCount = amountCount + 500.00;
+\end{lstlisting}
+\begin{block}{}
+Nel pezzo di codice sopra viene fatto uso di \texttt{amountCount} che è una \textit{variabile}. Una variabile quindi 
+serve per mantenere in memoria qualcosa. Nel nostro esempio mettiamo infatti il numero 50.00. Questo numero potrà essere
+cambiato, naturalmente il vecchio valore non verrà memorizzato.
+\end{block}
+\end{frame}
+
+\subsection*{Tipi di variabile}
+\begin{frame}
+\begin{block}{}
+Quando si pensa ad un computer che memorizza una lettera ad esempio la lettera J esso in realtà memorizza la sequenza 
+\texttt{01001010}, ogni cosa all'interno di un computer è una sequenza di 0 e 1, più comunemente sequenze di \textCl{bit}.
+\end{block}
+\begin{block}{01001010}
+Questa sequenza inoltre può assumere altri significati:
+\begin{itemize}
+\item Come detto precedentemente la lettera J
+\item ma anche il numero intero 74;
+\item $1.036960863003646 x 10^{-43}$
+\end{itemize}
+\end{block}
+\begin{block}{}
+\textit{Il computer distingue il tipo della sequenza utilizzando il concetto di \textCl{tipo}}. Il tipo di una variabile è
+il range di valori che può assumere.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+import static java.lang.System.out;
+class acconto {
+   public static void main(String args[]) {
+       double amountAccount;
+       amountAccount = 50.00;
+       amountAccount = amountAccount + 500.00;
+       out.print("You have:");
+       out.print(amountInAccount);
+       out.println(" in your account.");
+   }	
+}
+\end{lstlisting}
+\begin{block}{}
+\texttt{double ammountAccount;}
+Indica la \textit{dichiarazione di una variabile}. Nella dichiarazione della variabile la parola \texttt{double} è 
+una \textit{keyword} Java.
+\end{block}
+\end{frame}
+
+\subsection*{I tipi primitivi di Java}
+\begin{frame}
+\begin{block}{}
+La parola \texttt{double} è un esempio di tipo primitivo in Java (anche come conosciuti \textit{tipi semplici}).
+\end{block}
+\begin{tabular}{c c c}
+\toprule
+\multicolumn{3}{c}{Tipi primitivi di Java}\\
+\cmidrule(r){1-3}
+\textbf{Tipo} & \textbf{Che valore rappresentano} & \textbf{Range di valori}\\
+\hline
+\texttt{byte} & \texttt{(byte)42} & -128 a 127 \\
+\hline
+\texttt{short} & \texttt{(short)42} & -32768 a 32767 \\
+\hline
+\texttt{int} & \texttt{42} & –2147483648 a \\ 
+ & & 2147483647\\
+\hline
+\texttt{long} & \texttt{42L} & –9223372036854775808 a\\
+& & 9223372036854775807\\
+\bottomrule
+\end{tabular}
+\end{frame}
+

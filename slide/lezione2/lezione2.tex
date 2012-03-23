@@ -1,0 +1,89 @@
+\documentclass[pdftex,12pt]{beamer}
+\usepackage[italian]{babel}
+%~ \usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+
+
+%inclusione immagini:
+\usepackage{graphicx}
+%~ \usepackage{multicol}
+
+%inclusione codice:
+%~ \usepackage{listings}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} 
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{url}
+
+
+%~ \usepackage[dvips]{graphicx}
+%\graphicspath{{figures/}}
+
+%~ NON SI POSSONO INSERIRE IMMAGINI IN EPS!
+\DeclareGraphicsExtensions{.png, .jpg, .jpeg, .pdf}
+%~ \usepackage[pdftex]{graphicx}
+
+\usepackage{acronym}
+\colorlet{newred}{red!60!black}
+\setbeamercolor{block title}{bg=newred,fg=white}%bg=background, fg= foreground
+\setbeamercolor{block body}{bg=white,fg=black}%bg=background, fg= foreground
+\setbeamercolor{frametitle}{fg=newred}
+
+\newcommand{\textCl}[1]{\textcolor{blue}{#1}}
+%\usecolortheme{whale}	
+\usetheme{CambridgeUS}
+\usepackage{textcomp}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+	backgroundcolor=\color{lbcolor},
+	tabsize=4,
+        language=Java,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+       basicstyle=\footnotesize,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=true,
+        tab=\rightarrowfill,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941},
+}
+\title[Java]{
+Corso di base di JAVA
+}
+
+\author[Mauro Donadeo]{
+	mauro.donadeo@gmail.com
+}
+
+\institute[HTLAB]{
+	Università degli Studi di Padova
+}
+\logo{\includegraphics[width=5mm]{images/logo.png}}
+\date[27.03.2012]{27 marzo 2012}
+
+\setbeamertemplate{navigation symbols}{}
+\begin{document}
+\input{slideLesson2}
+
+
+\end{document}
+
