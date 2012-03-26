@@ -243,3 +243,117 @@ Costituiscono l'\textCl{interfaccia pubblica} di una classe:
 \end{itemize}
 \end{block}
 \end{frame}
+
+\begin{frame}
+\frametitle{Metodi, parametri espliciti/impliciti}
+\begin{block}{}
+Alcuni metodi necessitano di \textCl{valori in ingresso} che specificano l'operazione da svolgere.
+\begin{center}
+\texttt{System.out.printf(\textCl{pippo})}
+\end{center}
+\textCl{pippo} in questo caso rappresenta un parametro esplicito.
+\end{block}
+\begin{block}{}
+Altri metodi invece non necessitano di alcun parametro. Tutte le informazioni sono memorizzate nell'oggetto corrispondente.
+\begin{center}
+\texttt{int n = \textCl{pippo}.length();}
+\end{center}
+\textCl{pippo} in questo caso è il parametro implicito.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Definizione dei metodi}
+\begin{block}{}
+\textbf{public} \alert{void} \textCl{println(String output)}
+\textbf{public} \alert{String} \textCl{replace(String target,String replace)}
+\end{block}
+\begin{block}{}
+La \textbf{definizione di un metodo} inizia sempre con la sua \textbf{intestazione}, composta da:
+\begin{itemize}
+\item uno specificare di accesso:
+\begin{itemize}
+\item in questo caso è \textbf{public}, ma esiste anche la clusula \textbf{private};
+\end{itemize}
+\item il tipo di dati restituito dal metodo (\alert{Sting, void, int, double\ldots}
+\item il nome del metodo (\textCl{println, replace, length})
+\item un elenco di parametri, eventualmente vuoto, chiuso tra \textCl{parentesi tonde}
+\begin{itemize}
+\item di ogni parametro si indica il tipo e nome
+\item più parametri sono separati da una virgola.s
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Variabili oggetto}
+\begin{block}{}
+Una \textCl{variabile oggetto} conserva non l'oggetto stesso, ma informazioni sulla sua posizione nella memoria del computer.
+Sostanzialmente è un \alert{riferimento} all'oggetto.
+\end{block}
+\begin{block}{}
+Per definire una variabile oggetto si indica il nome della \textbf{classe} a cui l'oggetto farà riferimento la variabile,
+seguito dal nome della \textCl{variabile} stessa.
+\begin{center}
+\alert{NomeClasse} \textCl{nomeOggetto}
+\end{center}
+\end{block}
+\begin{block}{}
+La definizione di una variabile oggetto crea un riferimento \textbf{non inizializzato}, cioè la variabile non fa riferimento ad 
+alcun oggetto.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Costruire oggetti: l'operatore new}
+\begin{block}{}
+Per \textbf{creare un oggetto} di una classe si usa l'operatore \textCl{new} seguito dal \alert{nome della classe} e da una coppia
+di parentesi tonde
+\begin{center}
+\texttt{\textCl{new} \alert{NomeClasse}(parametri)}
+\end{center}
+\end{block}
+\begin{block}{}
+L'operatore \textCl{new} \textbf{crea un nuovo oggetto e ne restituisce un riferimento, che può essere assegnato ad una variabile}
+del tipo appropiato.
+\begin{center}
+\textbf{NomeClasse} \alert{nomeVar} = \textCl{new} \textbf{NomeClasse(parametri)}
+\end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{ESERCIZIO}
+\begin{block}{}
+Creare un rettangolo descritte dalle coordinate (x,y) del suo vertice in alto a sinistra e dalla larghezza e altezza.
+\end{block}
+\begin{block}{}
+Creare un secondo rettangolo con le stesse caratteristiche del primo, e successivamente traslarlo di (15,20).
+\end{block}
+\begin{block}{}
+Stampare le caratteristiche sia del primo che del secondo rettangolo.
+\end{block}
+\begin{block}{}
+Potete importare la classe Rectangle, presente nel pacchetto in \alert{java.awt.Rectangle}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Programmi di controllo}
+Sono utilizzati per collaudare il funzionamento di una classe.
+\begin{itemize}
+\item Definire una nuova classe;
+\item Definire in essa un nuovo metodo main;
+\item Costruire oggetti all'interno del metodo main;
+\item Applicare metodi agli oggetti
+\item Visualizzare i risultati delle invocazioni dei metodi.
+\end{itemize}
+\alert bisogna importare le classi che si vuole utilizzare.
+
+\begin{block}{}
+Tutte le classi della libreria standard sono raccolte in \textbf{pacchetti} e sono organizzate in pacchetto o finalità. 
+\texttt{java.lang} (al quale appartengono \textbf{System} e \textbf{String}) viene importata automaticamente.
+\end{block}
+
+\end{frame}
