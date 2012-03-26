@@ -27,6 +27,19 @@ sono comuni a tutti i linguaggi di programmazione.
 
 \section*{Variabili}
 \subsection*{Assegnamento}
+\begin{frame}
+\begin{block}{Le Variabili}
+\begin{itemize}
+\item Ogni programma fa uso di variabili;
+\item le \textbf{variabili} sono spazi di memoria, identificati da un \textbf{nome}, che possono contenere \textbf{valori}
+di qualsiasi tipo
+\item ciascuna variabile deve essere \textbf{definita}, indicandone il \alert{tipo} ed il \textCl{nome};
+\item Una variabile può contenere soltanto valori dello \textbf{stesso tipo}.
+\item Nella definizione di una variabile è possibile \textCl{assegnarle} un \alert{valore iniziale}.
+\end{itemize}
+\end{block}
+\end{frame}
+
 \begin{frame}[fragile]
 \begin{block}{}
 Supponiamo di avere un conto corrente con all'interno 50.00 euro. E che riceveremo un acconto per un lavoro di 500.00 euro.
@@ -37,9 +50,8 @@ amountCount = 50.00;
 amountCount = amountCount + 500.00;
 \end{lstlisting}
 \begin{block}{}
-Nel pezzo di codice sopra viene fatto uso di \texttt{amountCount} che è una \textit{variabile}. Una variabile quindi 
-serve per mantenere in memoria qualcosa. Nel nostro esempio mettiamo infatti il numero 50.00. Questo numero potrà essere
-cambiato, naturalmente il vecchio valore non verrà memorizzato.
+Nel pezzo di codice sopra viene fatto uso di \texttt{amountCount} che è una \textit{variabile}. E questa variabile viene
+inizializzata con $50.00$. Questo numero potrà variare, naturalmente il vecchio valore non verrà memorizzato.
 \end{block}
 \end{frame}
 
@@ -68,11 +80,10 @@ il range di valori che può assumere.
 import static java.lang.System.out;
 class acconto {
    public static void main(String args[]) {
-       double amountAccount;
-       amountAccount = 50.00;
+       double amountAccount = 50.00;
        amountAccount = amountAccount + 500.00;
        out.print("You have:");
-       out.print(amountInAccount);
+       out.print(amountAccount);
        out.println(" in your account.");
    }	
 }
@@ -89,6 +100,7 @@ una \textit{keyword} Java.
 \begin{block}{}
 La parola \texttt{double} è un esempio di tipo primitivo in Java (anche come conosciuti \textit{tipi semplici}).
 \end{block}
+\begin{table}[h]\footnotesize
 \begin{tabular}{c c c}
 \toprule
 \multicolumn{3}{c}{Tipi primitivi di Java}\\
@@ -104,7 +116,130 @@ La parola \texttt{double} è un esempio di tipo primitivo in Java (anche come co
 \hline
 \texttt{long} & \texttt{42L} & –9223372036854775808 a\\
 & & 9223372036854775807\\
+\hline
+\texttt{float} & \texttt{42.0F} & $-3.4x10^{38} a 3.4x10^{38}$\\
+\hline
+\texttt{double} & \texttt{42.0} & $-1.8x10^{308} a 1.8x10^{308}$\\
+\hline
+\texttt{char} & \texttt{'A'} & Centinaia di caratteri, simboli \\
+\hline
+\texttt{boolean} & \texttt{true} & true, false\\
 \bottomrule
 \end{tabular}
+\end{table}
 \end{frame}
 
+\subsection*{Creare nuovi valori utilizzando gli operatori}
+\begin{frame}
+\frametitle{Cosa si può fare con l'operatore \alert{+}}
+\begin{block}{Classico}\footnotesize
+\texttt{\textCl{int}} mele, pere, frutta;\\
+\texttt{mele = 5;}\\
+\texttt{pere = 10;}\\
+\texttt{frutta = mele + pere;}\\
+\end{block}
+\pause
+\begin{block}{Concatenazione}\footnotesize
+\texttt{String concatenazione = ``Questa è la prima stringa ''\textCl{+} ``Questa è la seconda stringa''}\\
+E' possibile anche concatenare stringhe con numeri\\
+\texttt{System.out.println(``Tu hai comprato: ''\textCl{+} frutta \textCl{+}`` pezzi di frutta'');}
+\end{block}
+\pause
+\begin{block}{Operatori}
+Chiaramente valgono tutti gli altri operatori aritmetici che possiamo immaginare: \textCl{- * / \%}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Operatori di incremento e decremento}
+\begin{itemize}
+\item \texttt{nomeVariabile++/nomeVariabile--} incrementa/decrementa di una unità il valore della variabile dopo averla valutata;
+\item \texttt{++nomeVariabile/--nomeVariabile} incrementa/decrementa la variabile di una unità prima che essa venga valutata.
+\end{itemize}
+\end{block}
+\begin{block}{Assignment operators}
+E' possibile anche effettuare un incremento maggiore di uno: per esempio sommare due o cinque o 100000.
+\begin{itemize}
+\item \texttt{numberIncrement += 1;} La variabile viene incrementata di uno;
+\item \texttt{numberIncrement +=10000;} La variabile viene incrementata di 10000;
+\item \texttt{numberIncrement *= 500;} La variabile viene moltiplicata per 500;
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section*{Oggetti, classi, metodi}
+\begin{frame}
+\begin{block}{}
+\begin{huge}
+\large{\begin{center}
+\textCl{Oggetti, classi, metodi}
+\end{center}}
+\end{huge}
+\end{block}
+\end{frame}
+\subsection*{Oggetti}
+\begin{frame}
+\frametitle{Oggetti}
+\begin{block}{}
+Un \textbf{oggetto} è un'entità che può essere manipolata in un programma mediante l'invocazione dei suoi \textbf{metodi}
+\end{block}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{}
+\begin{itemize}
+\item \textCl{pippo} è un oggetto;
+\item appartiene alla classe \textbf{String}
+\item si può manipolare ad esempio mediante i suoi \textCl{metodi}
+\begin{itemize}
+\item ad esempio \textbf{toUppercase}
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\includegraphics[scale=0.4]{images/classe.jpg}
+\end{column}
+\end{columns}
+\begin{block}{}\footnotesize
+Per il momento consideriamo un oggetto come una \textbf{black box} dotata di una \textbf{interfaccia pubblica}, che definisce il comportamento dell'oggetto, e una sua realizzazione \textbf{nascosta} (il codice dei metodi ed i loro dati)
+\end{block}
+\end{frame}
+
+\subsection*{Classi}
+\begin{frame}
+\begin{block}{Una classe}
+\begin{itemize}
+\item è una \textbf{fabbrica di oggetti};
+\begin{itemize}
+\item gli oggetti che si creano sono \alert{esemplari}
+\end{itemize}
+\item specifica i metodi che si possono invocare per gli oggetti che sono esemplari di tale classe.
+\item definisce i particolari della realizzazione dei metodi
+\item è un contenitore di :
+\begin{itemize}
+\item metodi statici;
+\item oggetti statici;
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection*{Metodi}
+\begin{frame}
+\begin{block}{}
+Costituiscono l'\textCl{interfaccia pubblica} di una classe:
+\begin{itemize}
+\item Istruzioni valide:
+\begin{itemize}
+\item \texttt{String pippo = ``Hello world'';}
+\item \texttt{int n = pippo.\alert{lenght()};}
+\item \texttt{String river = ``Missisipi'';}
+\item \texttt{String BigRiver = river.\alert{toUpperCase();}}
+\end{itemize}
+\item Istruzione non valida (il metodo non appartiene alla classe):
+\begin{itemize}
+\item \texttt{System.out\alert{.lenght();}}
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
