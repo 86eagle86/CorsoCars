@@ -25,13 +25,31 @@ sono comuni a tutti i linguaggi di programmazione.
 \end{block}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Un programma che elabora numeri}
+\begin{lstlisting}
+public class Coins1{
+    public static void main(String[] args){
+        int lit = 15000; //lire italiane
+        double euro = 2.35 //euro;
+        
+        //calcola il valore totale
+        double totalEuro = euro + lit / 1936.27;
+        
+        //Stampa il valore totale
+        String outMessage = "Valore totale in euro";
+        System.out.print(outMessage);
+        System.out.println(totalEuro);
+    }   
+}
+\end{lstlisting}
+\end{frame}
 \section*{Variabili}
-\subsection*{Assegnamento}
 \begin{frame}
 \begin{block}{Le Variabili}
 \begin{itemize}
 \item Ogni programma fa uso di variabili;
-\item le \textbf{variabili} sono spazi di memoria, identificati da un \textbf{nome}, che possono contenere \textbf{valori}
+\item le \textbf{variabili} sono spazi di memoria, identificate da un \textbf{nome}, che possono contenere \textbf{valori}
 di qualsiasi tipo
 \item ciascuna variabile deve essere \textbf{definita}, indicandone il \alert{tipo} ed il \textCl{nome};
 \item Una variabile può contenere soltanto valori dello \textbf{stesso tipo}.
@@ -42,21 +60,70 @@ di qualsiasi tipo
 
 \begin{frame}[fragile]
 \begin{block}{}
-Supponiamo di avere un conto corrente con all'interno 50.00 euro. E che riceveremo un acconto per un lavoro di 500.00 euro.
+Un programma può benissimo risolvere i vari problemi anche senza l'utilizzo di variabili
 \end{block}
-\pause
 \begin{lstlisting}
-amountCount = 50.00;
-amountCount = amountCount + 500.00;
+public class Coins2{
+   public static void main(String[] args){
+       System.out.print("Valore totale in euro");
+       System.out.println(2.35 +15000/1936.27);
+   }
+}
 \end{lstlisting}
+\pause
 \begin{block}{}
-Nel pezzo di codice sopra viene fatto uso di \texttt{amountCount} che è una \textit{variabile}. E questa variabile viene
-inizializzata con $50.00$. Questo numero potrà variare, naturalmente il vecchio valore non verrà memorizzato.
+\textbf{ma sarebbe molto meno comprensibile e modificabile con difficoltà}
 \end{block}
 \end{frame}
 
-\subsection*{Tipi di variabile}
+\subsubsection*{I nomi delle variabili}
 \begin{frame}
+\begin{block}{}
+La scelta dei nomi delle variabile è molto importante ed è bene \textCl{scegliere nomi che descrivono adeguatamente la funzione
+della variabile}
+\end{block}
+\begin{block}{Alcune regole}
+\begin{itemize}
+\item deve iniziare con una lettera;
+\item non può essere una \textCl{una parola riservata} o un \textCl{simbolo riservato} del linguaggio;
+\item non può contenere spazi;
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{}
+\begin{center}
+\textit{Java è case sensitive}
+\end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Definizione di una variabile}
+\begin{block}{Sintassi}
+\begin{center}
+\textbf{nomeTipo nomeVariabile;}\\
+\textbf{nomeTipo nomeVariabile = espressione;}
+\end{center}
+\end{block}
+\begin{block}{}
+Scopo: definire la nuova variabile \textbf{nomeVariabile}, di tipo \textbf{nomeTipo}, ed eventualmente assegnarle il valore
+iniziale \textbf{espressione}
+\end{block}
+\begin{block}{Alcune convenzioni}
+\begin{itemize}
+\item i nomi di \textCl{variabili} e \textCl{metodi} \textbf{iniziano con la lettera} \alert{minuscola};
+\item i nomi di \textCl{classi} \textbf{iniziano con una lettera} \alert{maiuscola};
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\subsection*{Tipi di variabile}
+
+
+\begin{frame}
+
+
 \begin{block}{}
 Quando si pensa ad un computer che memorizza una lettera ad esempio la lettera J esso in realtà memorizza la sequenza 
 \texttt{01001010}, ogni cosa all'interno di un computer è una sequenza di 0 e 1, più comunemente sequenze di \textCl{bit}.
@@ -75,30 +142,11 @@ il range di valori che può assumere.
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]
-\begin{lstlisting}
-import static java.lang.System.out;
-class acconto {
-   public static void main(String args[]) {
-       double amountAccount = 50.00;
-       amountAccount = amountAccount + 500.00;
-       out.print("You have:");
-       out.print(amountAccount);
-       out.println(" in your account.");
-   }	
-}
-\end{lstlisting}
-\begin{block}{}
-\texttt{double ammountAccount;}
-Indica la \textit{dichiarazione di una variabile}. Nella dichiarazione della variabile la parola \texttt{double} è 
-una \textit{keyword} Java.
-\end{block}
-\end{frame}
 
 \subsection*{I tipi primitivi di Java}
 \begin{frame}
 \begin{block}{}
-La parola \texttt{double} è un esempio di tipo primitivo in Java (anche come conosciuti \textit{tipi semplici}).
+La parola \texttt{double} \texttt{int} sono esempi in Java (anche come conosciuti \textit{tipi semplici}).
 \end{block}
 \begin{table}[h]\footnotesize
 \begin{tabular}{c c c}
@@ -129,40 +177,78 @@ La parola \texttt{double} è un esempio di tipo primitivo in Java (anche come co
 \end{table}
 \end{frame}
 
-\subsection*{Creare nuovi valori utilizzando gli operatori}
+\subsection*{Le Stringhe}
 \begin{frame}
-\frametitle{Cosa si può fare con l'operatore \alert{+}}
-\begin{block}{Classico}\footnotesize
-\texttt{\textCl{int}} mele, pere, frutta;\\
-\texttt{mele = 5;}\\
-\texttt{pere = 10;}\\
-\texttt{frutta = mele + pere;}\\
+\begin{block}{Il tipo dati stringa}
+\begin{itemize}
+\item Nella programmazione i tipi di dati più importanti sono i \textbf{numeri} e le \textbf{stringhe}.
+\item Una \textbf{stringa} è una \textCl{sequenza di caratteri} che in Java e molti altri linguaggi è racchiusa
+tra virgolette \textbf{``Hello''}
+\begin{itemize}
+\item le virgolette non hanno fanno parte della stringa
+\end{itemize}
+\item Possiamo \textbf{dichiarare} e inizializzazione \textbf{variabili di tipo stringa} 
+\begin{itemize}
+\item \textCl{String} \alert{name} = \textbf{``John''}
+\end{itemize}
+\item E' possibile \textbf{assegnare un valore} ad una variabile di tipo stringa
+\begin{itemize}
+\item \alert{name} = \textbf{``Michael''}
+\end{itemize}
+\end{itemize}
 \end{block}
-\pause
-\begin{block}{Concatenazione}\footnotesize
-\texttt{String concatenazione = ``Questa è la prima stringa ''\textCl{+} ``Questa è la seconda stringa''}\\
-E' possibile anche concatenare stringhe con numeri\\
-\texttt{System.out.println(``Tu hai comprato: ''\textCl{+} frutta \textCl{+}`` pezzi di frutta'');}
-\end{block}
-\pause
-\begin{block}{Operatori}
-Chiaramente valgono tutti gli altri operatori aritmetici che possiamo immaginare: \textCl{- * / \%}
+\end{frame}
+
+\subsection*{Creare nuovi valori utilizzando gli operatori}
+\begin{frame}[fragile]
+\frametitle{Assegnazione}
+\begin{lstlisting}
+public class Coins3{ 
+    public static void main(String[] args){ 
+        int lit = 15000; // lire italiane
+        double euro = 2.35; // euro
+        double dollars = 3.05; // dollari
+        /* calcola il valore totale
+       sommando successivamente i contributi*/
+       double totalEuro = lit / 1936.27;
+       totalEuro = totalEuro + euro;
+       totalEuro = totalEuro + dollars * 0.72;
+       System.out.print("Valore totale in euro ");
+       System.out.println(totalEuro);
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+In questo caso il valore della variabile \textCl{totalEuro} \textbf{cambia} durante l'esecuzione del programma
+\begin{itemize}
+\item per prima cosa la variabile vine \textbf{inizializzata} contestualmente alla sua \alert{definizione}:
+\begin{center}
+\texttt{\alert{double} totalEuro = \textCl{lit /1936.27};}
+\end{center}
+\item poi la variabile viene \textbf{incrementata}, due volte:
+\begin{center}
+\texttt{\textCl{totalEuro = totalEuro + euro;}\\}
+\texttt{\textCl{totalEuro = totalEuro + dollars * 0.79;}}
+\end{center}
+\end{itemize}
 \end{block}
 \end{frame}
 
 \begin{frame}
-\begin{block}{Operatori di incremento e decremento}
+\frametitle{Alcune note sintattiche}
+\begin{block}{}
 \begin{itemize}
-\item \texttt{nomeVariabile++/nomeVariabile--} incrementa/decrementa di una unità il valore della variabile dopo averla valutata;
-\item \texttt{++nomeVariabile/--nomeVariabile} incrementa/decrementa la variabile di una unità prima che essa venga valutata.
+\item L'operatore che indica la divisione è \textCl{/}, quello che indica la moltiplicazione è: \textCl{*};
+\item Quando si descrivono i numeri in virgola mobile, bisogna utilizzare il \textbf{punto} come separatore decimale invece
+della virgola
+\item non c'è bisogno di utilizzare il punto per indicare il separatore di migliaia
+\item i numeri in virgola mobile si possono anche esprimere in \alert{notazione esponenziale}. Ad esempio: 
+\begin{itemize}
+\item \textCl{1.93E3} vale \alert{$1.93 x 10^{3}$}
 \end{itemize}
-\end{block}
-\begin{block}{Assignment operators}
-E' possibile anche effettuare un incremento maggiore di uno: per esempio sommare due o cinque o 100000.
-\begin{itemize}
-\item \texttt{numberIncrement += 1;} La variabile viene incrementata di uno;
-\item \texttt{numberIncrement +=10000;} La variabile viene incrementata di 10000;
-\item \texttt{numberIncrement *= 500;} La variabile viene moltiplicata per 500;
 \end{itemize}
 \end{block}
 \end{frame}
@@ -226,7 +312,7 @@ Per il momento consideriamo un oggetto come una \textbf{black box} dotata di una
 
 \subsection*{Metodi}
 \begin{frame}
-\begin{block}{}
+\begin{block}{I metodi:}
 Costituiscono l'\textCl{interfaccia pubblica} di una classe:
 \begin{itemize}
 \item Istruzioni valide:
@@ -249,7 +335,7 @@ Costituiscono l'\textCl{interfaccia pubblica} di una classe:
 \begin{block}{}
 Alcuni metodi necessitano di \textCl{valori in ingresso} che specificano l'operazione da svolgere.
 \begin{center}
-\texttt{System.out.printf(\textCl{pippo})}
+\texttt{System.out.println(\textCl{pippo})}
 \end{center}
 \textCl{pippo} in questo caso rappresenta un parametro esplicito.
 \end{block}
@@ -265,7 +351,7 @@ Altri metodi invece non necessitano di alcun parametro. Tutte le informazioni so
 \begin{frame}
 \frametitle{Definizione dei metodi}
 \begin{block}{}
-\textbf{public} \alert{void} \textCl{println(String output)}
+\textbf{public} \alert{void} \textCl{println(String output)}\\
 \textbf{public} \alert{String} \textCl{replace(String target,String replace)}
 \end{block}
 \begin{block}{}
@@ -275,12 +361,12 @@ La \textbf{definizione di un metodo} inizia sempre con la sua \textbf{intestazio
 \begin{itemize}
 \item in questo caso è \textbf{public}, ma esiste anche la clusula \textbf{private};
 \end{itemize}
-\item il tipo di dati restituito dal metodo (\alert{Sting, void, int, double\ldots}
+\item il tipo di dati restituito dal metodo (\alert{String, void, int, double\ldots}
 \item il nome del metodo (\textCl{println, replace, length})
 \item un elenco di parametri, eventualmente vuoto, chiuso tra \textCl{parentesi tonde}
 \begin{itemize}
 \item di ogni parametro si indica il tipo e nome
-\item più parametri sono separati da una virgola.s
+\item più parametri sono separati da una virgola.
 \end{itemize}
 \end{itemize}
 \end{block}
@@ -323,6 +409,30 @@ del tipo appropiato.
 \end{block}
 \end{frame}
 
+\begin{frame}[fragile]
+\begin{block}{Stringhe = Oggetti}
+\begin{itemize}
+\item Diversamente dai numeri, \textbf{le stringhe sono oggetti};
+\begin{itemize}
+\item infatti, il tipo di dati \textCl{String} inizia con la \textbf{maiuscola}
+\item invece, \alert{int} e \alert{double} iniziano con la minuscola
+\end{itemize}
+\item Una variabile di tipo stringa quindi può essere utilizzata per invocare i metodi della classe \textCl{String};
+\begin{itemize}
+\item per esempio, il metodo \textCl{length} restituisce la lunghezza di una stringa, cioè \textbf{il numero di caratteri}
+presenti in essa.
+\end{itemize}
+\end{itemize}
+\end{block}
+\begin{block}{}
+\begin{lstlisting}
+String name = "John";
+int n = name.length(); // n = 4
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\subsubsection*{Esercitazione}
 \begin{frame}
 \frametitle{ESERCIZIO}
 \begin{block}{}
@@ -349,11 +459,117 @@ Sono utilizzati per collaudare il funzionamento di una classe.
 \item Applicare metodi agli oggetti
 \item Visualizzare i risultati delle invocazioni dei metodi.
 \end{itemize}
-\alert bisogna importare le classi che si vuole utilizzare.
-
+\alert{bisogna importare le classi che si vuole utilizzare.}
 \begin{block}{}
 Tutte le classi della libreria standard sono raccolte in \textbf{pacchetti} e sono organizzate in pacchetto o finalità. 
 \texttt{java.lang} (al quale appartengono \textbf{System} e \textbf{String}) viene importata automaticamente.
 \end{block}
-
 \end{frame}
+
+\section*{Costanti}
+\begin{frame}[fragile]
+\frametitle{L'uso delle costanti}
+Un programma per il cambio di valuta
+\begin{lstlisting}
+public class Convert1{ 
+    public static void main(String[] args){ 
+	    double dollars = 2.35;
+        double euro = dollars * 0.72;
+    }
+}
+\end{lstlisting}
+\begin{block}{}
+Cosa rappresenta il \textbf{numero magico} \alert{0.72} usato per convertire i dollari in euro\ldots
+\end{block}
+\end{frame}
+\subsection*{Uso delle costanti}
+\begin{frame}[fragile]
+Come è possibile definire le variabili, è opportuno definire \textbf{nomi simbolici} anche alle \textbf{costanti} utilizzate nei
+programmi.
+\begin{lstlisting}
+public class Convert2{ 
+    public static void main(String[] args){ 
+        final double EURO_PER_DOLLAR = 0.72;
+        double dollars = 2.35;
+        double euro = dollars * EURO_PER_DOLLAR;
+        double dollars2 = 3.45;
+        double euro2 = dollars2 * EURO_PER_DOLLAR;
+    }
+}
+\end{lstlisting}
+\begin{block}{}
+Due vantaggi principali \alert{aumento della leggibilità}; se il valore della costante deve cambiare il valore cambia in un solo 
+punto.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Definizione di costante}
+\begin{block}{Sintassi}
+\begin{center}
+\texttt{\textCl{final} \textbf{nomeTipo NOME\_COSTANTE $=$ espressione}\textCl{;}}
+\end{center}
+\end{block}
+\begin{block}{Scopo}
+definire la costante \textbf{NOME\_COSTANTE} di tipo \textbf{nomeTipo} assegna il valore di \textbf{espressione}, che non potrà più
+essere modificato
+\end{block}
+\end{frame}
+
+\section*{Operazioni aritmetiche}
+\begin{frame}
+\frametitle{Operazioni aritmetiche}
+\begin{block}{}
+\begin{itemize}
+\item L'operatore di\textbf{moltiplicazione} va sempre indicato \textbf{esplicitamente}, non può essere \textbf{sottinteso}.
+\item Le operazioni di \textCl{moltiplicazione} e \textCl{divisione} \textbf{hanno la precedenza} sulle operazioni di 
+\alert{addizione} e \alert{sottrazione}, cioè vengono eseguite prima.
+\item \`E possibile usare \textbf{coppie di parentesi tonde} per indicare in quale oridne valutare le sotto-espressioni.
+\end{itemize}
+\end{block}
+\begin{block}{Divisione tra interi}
+\begin{itemize}
+\item Quando entrambi gli operandi sono numeri \textbf{interi}, la \textbf{divisione} calcola il \alert{quoziente intero},
+scartando il \textCl{resto}
+\item Per avere il resto della divisione tra numeri interi è possibile utilizzare l'operatore \textCl{\%}.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Combinare assegnazioni e aritmetica}
+Abbiamo già visto come in Java sia possibile combinare in un unico enunciato \textCl{un'assegnazione} ed \alert{un'espressione
+aritmetica che coinvolge la variabile a cui si assegnerà}
+\begin{center}
+\texttt{\alert{totalEuro} \textCl{=} \alert{totalEuro} + \textbf{dollars*0.72}}
+\end{center}
+\begin{block}{}
+L'espressione di sopra è tanto comune che Java mette a disposizione delle \textbf{scorciatoie}. Infatti si può tradurre come:
+\begin{center}
+\texttt{\alert{totalEuro} \textCl{+=} \textbf{dollars*0.72}}
+\end{center}
+che esiste per tutti gli operatori aritmetici
+\begin{center}
+\texttt{x = x \alert{*} 2} $------>$ \texttt{x \alert{*=} 2}
+\end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Incremento di una variabile}
+\begin{block}{Incremento}
+\`E l'operazione che consiste di aumentare di uno il valore di una variabile
+\begin{center}
+\texttt{\textbf{int counter = 0;}}\\
+\texttt{\alert{counter = counter + 1}};
+\end{center}
+\end{block}
+\begin{block}{Scorciatoie}
+Anche per questo tipo di operazione Java mette a disposizione delle scorciatoie e precisamente fornisce un operatore chiamato
+\textbf{incremento/decremento}
+\begin{center}
+\texttt{\alert{counter++;}}\\
+\texttt{\alert{counter--;}}
+\end{center}
+\end{block}
+\end{frame}  
