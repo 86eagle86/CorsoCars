@@ -1,0 +1,495 @@
+\begin{frame}
+	\setbeamercolor{block body}{bg = yellow}
+	\begin{block}{}
+		\begin{center}
+			{\large\textbf{Corso di base JAVA}}\\
+			\itshape{Mauro Donadeo}\\
+			mail: mauro.donadeo@gmail.com
+		\end{center}
+	\end{block}
+	\setbeamercolor{block body}{bg = white}
+	\begin{block}{}	
+		\begin{center}
+			\large{Utilizziamo la tastiera}\\
+			\includegraphics[width = 30mm]{images/java-logo.jpg}
+		\end{center}
+	\end{block}	
+\end{frame}
+
+\section*{I dati in ingresso}
+\begin{frame}
+\frametitle{I dati in ingresso}
+\begin{itemize}
+\item I programmi visti finora non sono molto utili, visto che \textbf{eseguono sempre la stessa elaborazione ad ogni
+esecuzione}
+\item Il programma \textbf{Coins1} rappresenta sempre il medesimo borsellino\ldots
+\begin{itemize}
+\item se si vuole che calcoli il valore contenuto in un diverso borsellino, è necessario modificare il codice sorgente 
+(in particolare, le inizializzazioni delle variabili) e compilarlo di nuovo
+\end{itemize}
+\item I programmi hanno bisogno di \textbf{ricevere i dati in ingresso} dell'utente.
+\end{itemize}
+\end{frame}
+
+\subsection*{Input Standard}
+\begin{frame}
+\begin{itemize}
+\item Il modo più semplice e immediato per fornire dati in ingresso ad un programma consiste nell'
+\textbf{utilizzo della tastiera}.
+\item Abbiamo visto che tutti i programmi Java hanno accesso al proprio \textit{output standard}, tramite l’oggetto 
+\textbf{System.out} di tipo \alert{PrintStream}
+\item Analogamente, l'interprete Java mette a disposizione dei programmi in esecuzione il proprio input standard 
+\textbf{(flusso di input), tramite l’oggetto System.in di tipo \alert{InputStream}}
+\end{itemize}
+\end{frame}
+
+\subsection*{La classe Scanner}
+\begin{frame}
+\begin{block}{La classe Scanner}
+\begin{itemize}
+\item Sfortunatamente, la classe \textbf{InputStream} non possiede metodi comodi per la ricezione di dati numerici e 
+stringhe
+\item Per ovviare a questo inconveniente, Java 5.0 ha introdotto la classe \textCl{Scanner}
+\begin{itemize}
+\item Un oggetto di tipo \textbf{Scanner} consente di leggere qualsiasi flusso di ingresso
+\item Incominceremo ad utilizzarlo per leggere da tastiera utilizzanndo l'oggetto \textbf{System.in}
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Usare la classe Scanner}
+\begin{block}{}
+Per leggere dallo standard input bisogna \textit{creare} un oggetto di tipo Scanner, usando la sintassi consueta:
+\begin{center}
+\textCl{Scanner in} \textbf{= new Scanner(System.in);}
+\end{center}
+\end{block}
+\begin{block}{}
+\begin{itemize}
+\item Dato che la classe \textbf{Scanner} non fa parte del pacchetto \textbf{java.lang}, ma del pacchetto 
+\textbf{java.util}, è necessario importare \textCl{esplicitamente} la classe all'interno del file java che ne fa uso
+\item \textbf{import} \textCl{java.util.Scanner;}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{I metodi nextInt e nextDouble}
+\begin{itemize}
+\item Per acquisire un numero intero si può utilizzare il metodo \textbf{nextInt();}
+\begin{itemize}
+\item \textbf{\alert{int} number = in.next\alert{Int();}}
+\end{itemize}
+\item Numero in virgola mobile: metodo \textbf{double nextDobule();}
+\begin{itemize}
+\item \textbf{\alert{double} number = in.next\alert{Double();}}
+\end{itemize}
+\item Durante l'esecuzione del metodo \alert{il programma si ferma ed attende} l'introduzione dell'input da tastiera,
+che termina quando l'utente batte il tasto \textCl{Invio}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{I metodi next e nextLine}
+\begin{block}{Parola}
+\begin{itemize}
+\item ovvero una stringa delimitata dai \textCl{caratteri di spaziatura}: space, tab, newline, carriage-return
+\item metodo \textbf{String next()}
+\item \textbf{\alert{String} state = \textCl{in}.\alert{next()};}
+\end{itemize}
+\end{block}
+\begin{block}{Riga}
+\begin{itemize}
+\item ovvero tutta l'intera stringa che viene inserita
+\item \textbf{\alert{String} city = \textCl{in}.\alert{nextLine()};}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{ESERCIZIO}
+\begin{block}{}
+Modifichiamo il programma Coins1 e per il calcolo dell'ipotenusa, dell'area e perimetro del rettangolo e quello che 
+crea la password affinché acquisiscano i dati da tastiera.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+\begin{huge}
+Come progettare le classi.
+\end{huge}
+\end{block}
+\end{frame}
+\section*{BankAccount}
+\begin{frame}
+\frametitle{Progetto di una classe BankAccount}
+\begin{block}{}
+Vogliamo progettare la classe \textbf{BankAccount}, che descriva il funzionamento di un conto corrente
+\end{block}
+\pause
+\begin{block}{Caratteristiche}
+\begin{itemize}
+\item Possibilità di \textCl{versare denaro};
+\item Possibilità di \textCl{prelevare denaro};
+\item Possibilità di \textCl{conoscere il saldo attuale}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+Le operazioni consentite dal comportamento di un oggetto si effettuano mediante invocazione di metodi
+\end{block}
+\begin{block}{Metodi di accesso e modificatori}
+\begin{itemize}
+\item \textbf{Metodo d'accesso}: accede ad un oggetto e restituisce informazioni senza modificarlo;
+\begin{itemize}
+\item \textCl{length} della classe \textbf{String} è metodo di accesso
+\item \textbf{getX, getY, getWidth, getHeight} della classe \textbf{Rectangle} sono metodi di accesso
+\end{itemize}
+\item \textbf{Metodo modificatore:} \alert{altera lo stato} di un oggetto.
+\begin{itemize}
+\item \textbf{translate} della classe Rectangle è un metodo modificatore.
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+Abbiamo detto che per creare un nuovo oggetto di una classe si usa l’operatore \textbf{new} seguito dal nome della classe e da una coppia di parentesi tonde
+\end{block}
+\begin{block}{I costruttori}
+\begin{itemize}
+\item Nella realizzazione della classe BankAccount bisogna includere il codice per creare un nuovo conto bancario, ad 
+esempio con saldo iniziale a zero
+\item Per consentire la creazione di un nuovo oggetto di una classe, inizializzandone lo stato, dobbiamo
+scrivere un nuovo metodo, il \alert{costruttore della classe}
+\end{itemize}
+\end{block}
+%\begin{lstlisting}
+%pubic banckAccount(){ //i costruttori hanno sempre lo stesso nome della classe.
+%//corpo costruttore
+%}
+%\end{lstlisting}
+\end{frame}
+
+\subsection*{Costruttori}
+\begin{frame}
+\begin{block}{Sintassi}
+\textbf{tipoAccesso \alert{NomeClasse}(TipoParametro nomeParametro,...)}
+\end{block}
+\begin{itemize}
+\item Lo scopo principale di un costruttore è quello di \textCl{inizializzare} un oggetto della classe
+\item I costruttori, come i metodi, sono solitamente pubblici, per consentire a chiunque di creare oggetti della classe
+\item I costruttori \alert{non} restituiscono alcun valore.
+\end{itemize}
+\end{frame}
+%
+\begin{frame}
+\frametitle{Invocazione di costruttori}
+\begin{block}{}
+I costurttori si invocano soltanto con l'operatore new:
+\begin{itemize}
+\item \alert{new} \textCl{BankAccount();}
+\end{itemize}
+\end{block}
+\begin{block}{new}
+L'operatore \textbf{new} riserva la memoria per l'oggetto, mentre il costruttore definisce il suo stato iniziale.
+Il valore restituito dall'operatore \textbf{new} è il riferimento all'oggetto appena creato e inizializzato.
+\begin{itemize}
+\item quasi sempre il valore dell'operatore \textbf{new} viene memorizzato in una variabile oggetto.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{Più costuttori}
+Una classe può avere più di un costruttore.
+\end{block}
+\pause
+\begin{lstlisting}
+public BankAccount(){ 
+    // corpo del costruttore
+    // inizializza il saldo a 0
+}
+public BankAccount(double initialBalance){ 
+   // corpo del costruttore
+   // inizializza il saldo a initialBalance
+}
+\end{lstlisting}
+\end{frame}
+%
+\begin{frame}
+\begin{block}{}
+Notiamo che, se esistono più costruttori in una classe, hanno tutti lo stesso nome, perché devono comunque avere lo 
+stesso nome della classe
+\begin{itemize}
+\item questo fenomeno (più metodi o costruttori con lo stesso nome) è detto sovraccarico del nome (overloading)
+\item il compilatore decide quale costruttore invocare basandosi sul numero e sul tipo dei parametri forniti
+nell’invocazione
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Definizione di classe}
+\begin{lstlisting}
+tipoAccesso class nomeClasse{ 
+   costruttori (intestazione e corpo)
+   metodi (intestazione e corpo)
+   variabili (campi) di esemplare
+}
+\end{lstlisting}
+\begin{block}{}
+Le variabili di esemplare memorizzano lo stato di un oggetto 
+\begin{itemize}
+\item La classe bankAccount deve avere un campo di esemplare che permetta di memorizzare il saldo di un
+oggetto di tipo bankAccount
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+public class BankAccount{
+    //Costruttori
+    public BankAccount(){
+     // corpo del costruttore 
+    }
+    public BankAccount(double initialBalance){ 
+        //corpo del costruttore 
+    }
+    //Metodi
+    public void deposit(double amount){ 
+        //realizzazione del metodo 
+    }
+    public void withdraw(double amount){
+        //realizzazione del metodo 
+    }
+    public double getBalance(){
+        //realizzazione del metodo 
+   }
+   //Campi di esemplare
+}
+\end{lstlisting}
+\end{frame}
+
+\section*{Variabili esemplare}
+\begin{frame}
+\frametitle{Lo stato di un oggetto}
+\begin{block}{}
+\begin{itemize}
+\item Gli oggetti hanno tutti bisogno di memorizzare il proprio stato attuale, cioè l'insieme di valori che:
+\begin{itemize}
+\item \textCl{descrivono} l'oggetto;
+\item \textCl{influenzano} il risultato dell'invocazione dei metodi dell'oggetto.
+\end{itemize}
+\end{itemize}
+\end{block}
+\begin{block}{BankAccount}
+Nel nostro esempio abbiamo bisogno di memorizzare il valore del \textCl{saldo} del conto bancario, che rappresenta
+lo stato dell'oggetto mediante una  \alert{variabile di esemplare}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Sintassi}
+\begin{center}
+\textbf{tipoDiAccesso TipoVariabile nomeVariabile}
+\end{center}
+\end{block}
+\begin{block}{}
+Ciascun oggetto della classe ha una propria copia delle variabili esemplare.  Tra le quali non esiste \alert{alcuna 
+relazione}: possono essere modificate indipendentemente.
+\end{block}
+\begin{block}{}
+Così come i metodi sono di solito \textbf{public}, le variabili esemplare sono di solito \textbf{private}, in questo
+modo possono essere modificate \alert{soltanto} da metodi della classe a cui appartengono.
+\end{block}
+\end{frame}
+
+\subsection*{Incapsulamento}
+\begin{frame}[fragile]
+\frametitle{Incapsulamento}
+\begin{block}{}
+Poiché la variabile balance \textbf{BankAccount} è private, non vi si può accedere da metodi che non siano della 
+classe
+\end{block}
+\begin{lstlisting}
+//codice interno a metodo che non appartiene a BankAccount
+double b = account.balance
+// ERRORE balance has private access in BankAccount
+\end{lstlisting}
+\begin{block}{Si utilizzano metodi pubblici}
+\begin{center}
+\textbf{double b = account\textCl{.getBalance()};}
+\end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+Il vantaggio fondamentale è quello di \alert{impedire l'accesso incontrollato} allo stato di un oggetto, impedendo
+così anche che l'oggetto venga posto in uno stato inconsistente.
+\end{block}
+\begin{block}{}
+Dato che il valore di \textbf{balance} può essere modificato soltanto invocando metodi \textbf{deposit} o 
+\textbf{withdraw}, il progettista può impedire che diventi negativo, magari segnalando una \textCl{condizione d'errore}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{huge}
+\begin{block}{}
+Realizzazione costruttori e metodi.
+\end{block}
+\end{huge}
+\end{frame}
+\section*{I metodi di BankAccount}
+\begin{frame}
+\begin{block}{}
+La realizzazione dei costruttori e dei metodi \textbf{BankAccount} è molto semplice:
+\begin{itemize}
+\item lo stato dell'oggetto è memorizzato nella \textCl{variabile di esemplare} \textbf{balance}
+\item i costruttori devono \textCl{inizializzare} la variabile balance.
+\item quando si deposita o si preleva una somma di denaro, il saldo del conto si \textCl{incrementa o decrementa} della
+somma specificata
+\item il metodo \textbf{getBalance} restituisce il valore del saldo corrente memorizzato nella variabile 
+\textbf{balance}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{I costruttori di BankAccount}
+\begin{lstlisting}
+public class BankAccount{
+    public BankAccount(){
+        balance = 0;
+    }
+    public BankAccount(double initialBalance){
+        balance = initialBalance;
+    }
+    ...
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Costruttore predefinito}
+In caso di assenza di un costruttore il compilatore genera \alert{un costruttore predefinito} senza sengalrazione
+di alcun errore.
+\begin{itemize}
+\item \textCl{è pubblico} e non richiede parametri
+\item \textCl{inizializza} tutte le variabili di esemplare
+\begin{itemize}
+\item a zero tutte le variabili di tipo \textCl{numerico}
+\item a false le variabili di tipo \textCl{boolean}
+\item al valore speciale \textbf{null} le variabili \textCl{oggetto}, in modo che tali variabili non si riferiscano 
+a nessun oggetto.
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{I metodi di BankAccount}
+\begin{lstlisting}
+public class BankAccount{ 
+   ...
+    public void deposit(double amount){ 
+        balance = balance + amount;
+    }
+    public void withdraw(double amount){ 
+        balance = balance - amount;
+    }
+    public double getBalance(){
+        return balance;
+    }
+    private double balance;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{L'enunciato return}
+\begin{block}{Sintassi}
+\begin{center}
+\textbf{\textCl{return} espressione;}
+\end{center}
+\end{block}
+\begin{block}{Scopo}\footnotesize
+Termina l'esecuzione di un metodo ritornano all'esecuzione sospesa dal metodo invocante.
+\begin{itemize}
+\item Se è presente una espressione, questa definisce il valore restituito dal metodo e deve essere del tipo 
+dichiarato dalla firma del metodo.
+\end{itemize}
+\end{block}
+\begin{block}{void}\footnotesize
+Al termine di un metodo con valore restituito di tipo \textbf{void}, viene eseguito un \textCl{return implicito}
+\begin{itemize}
+\item Il compilatore segnala \alert{errore} se si termina senza un enunciato \textbf{return} un metodo con diverso tipo 
+di valore restituito.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section*{I parametri dei metodi}
+\begin{frame}
+\begin{block}{}\footnotesize
+\textbf{public void deposit (double \alert{amount})}$\{$\\
+\begin{center}
+\textbf{balance = balance + \alert{amount};}
+\end{center}
+$\}$
+\end{block}
+\begin{block}{Invocazione del metodo}\footnotesize
+\begin{center}
+\textCl{account}.\textbf{deoposit(500);}
+\end{center}
+L'esecuzione del metodo dipende da due valori
+\begin{itemize}
+\item il \alert{riferimento} all'oggetto account;
+\item il \alert{valore} 500;
+\end{itemize}
+\end{block}
+\begin{block}{}\footnotesize
+Quando viene eseguito il metodo, il suo \textCl{parametro esplicito} \textbf{amount} assume il valore 500.
+Naturalmente farà riferimento alla variabile \textbf{balance}che appartiene all'oggetto \textbf{account}. \textbf{account} è \textCl{parametro implicito} del metodo.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Il riferimento null}
+\begin{itemize}
+\item Una variabile di un tipo numerico fondamentale contiene sempre un valore valido.
+\item Una variabile oggetto può invece contenere esplicitamente un \textbf{\textCl{riferimento a nessun oggetto valido}}
+assegnando una variabile il valore \textbf{\alert{null}}, che è una parola chiave del linguaggio
+\begin{itemize}
+\item \textbf{BankAccount account = \textCl{null}}
+\end{itemize}
+\item in questo caso la variabile è comunque inizializzata
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{Esempio di riferimento null}
+String è un oggetto, quindi, può contenere il riferimento \textbf{null}
+\end{block}
+\begin{lstlisting}
+String greeting = "Hello";
+String emptyString = ""; // stringa vuota 
+String nullString = null; // riferimento null 
+int x1 = greeting.length(); // vale 5
+int x2 = emptyString.length(); // vale 0
+// nel caso seguente l'esecuzione del programma
+// termina con un errore
+int x3 = nullString.length(); // errore
+\end{lstlisting}
+\end{frame}
