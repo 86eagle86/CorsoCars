@@ -492,4 +492,173 @@ int x2 = emptyString.length(); // vale 0
 // termina con un errore
 int x3 = nullString.length(); // errore
 \end{lstlisting}
+\begin{block}{}
+Una variabile oggetto che contiene un riferimento a null \textbf{\textCl{non si riferisce ad alcun oggetto}}.
+Se viene utilizzata per invocare metodi, l'interprete termina l'esecuzione del programma segnalando un eccezione di tipo
+\alert{NullPointerException}.
+\end{block}
 \end{frame}
+\section*{Collaudare una classe}
+\begin{frame}[fragile]
+\frametitle{Usare la classe BankAccount}
+\begin{block}{}
+Senza sapere come sia stata realizzata la classe \textbf{BanckAccount}, siamo in grado di utilizzarla in un programma.
+\begin{itemize}
+\item apriamo un nuovo conto bancario e depositiamo un po' di denaro.
+\end{itemize}
+\end{block}
+\begin{lstlisting}
+double initialDeposit = 1000;
+BankAccount account = new BankAccount();
+System.out.println("Saldo: " + account.getBalance());
+account.deposit(initialDeposit);
+System.out.println("Saldo: " + account.getBalance());
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{itemize}
+\item Trasferiamo denaro da un conto ad un altro
+\end{itemize}
+\begin{lstlisting}
+double amount = 500;
+account1.withdraw(amount);
+account2.deposit(amount);
+\end{lstlisting}
+\begin{itemize}
+\item calcoliamo e accreditiamo il 5\% di interessi di un conto
+\end{itemize}
+\begin{lstlisting}
+double rate = 0.05; // interessi del 5%
+double amount = account.getBalance() * rate;
+account.deposit(amount);
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+\textbf{BankAccount} non contiene un metodo \textbf{\textCl{main}}
+\begin{itemize}
+\item Compilando \texttt{BankAccount.java} si ottiene \texttt{BankAccount.class}
+\item Ma \textbf{non } possiamo eseguire la classe BankAccount.class
+\end{itemize}
+\end{block}
+\begin{block}{}
+Dobbiamo scrivere una \textbf{\textCl{classe collaudo}} (o di test) che contenga un metodo main nel quale:
+\begin{itemize}
+\item Costruiamo uno o più oggetti della classe da collaudare
+\item Invochiamo i metodi della classe per questi oggetti
+\item Visualizziamo i valori restituiti.
+\end{itemize}
+\end{block}
+\end{frame}
+\section*{Un programma con più classi}
+\begin{frame}
+\frametitle{Un programma con più classi}
+\begin{block}{}
+Per scrivere semplici programmi \textbf{\alert{con più classi}} si possono utilizzare due strategie (equivalenti):
+\end{block}
+\begin{block}{}
+\begin{itemize}
+\item Scrivere \textbf{\alert{ciascuna classe in un file diverso}}, ciascuno avente il nome della classe con estensione 
+\texttt{.java}:
+\begin{itemize}
+\item Tutti i file vanno tenuti nella stessa cartella;
+\item tutti file vanno compilati separatamente;
+\item solo la classe di collaudo (contente il metodo \texttt{main}) va eseguita.
+\end{itemize}
+\end{itemize}
+\end{block}
+\begin{block}{}
+\begin{itemize}
+\item Scrivere \textbf{\alert{tutte le classi in un unico file}}
+\begin{itemize}
+\item un file \texttt{.java} può contenere una sola classe public
+\item la classe contente il metodo \texttt{main} deve essere \texttt{public}.
+\item le altre classi non devono essere \texttt{public}
+\item il file \texttt{.java} deve avere il nome della classe \texttt{public}
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Riassunto: progetttare una classe}
+\begin{block}{}
+\begin{enumerate}
+\item \alert{Capire} cosa deve fare un oggetto della classe
+\begin{itemize}
+\item Elenco in un linguaggio naturale delle operazioni possibili;
+\end{itemize}
+\item Specificare \textbf{\alert{l'interfaccia pubblica}}
+\begin{itemize}
+\item Ovvero, definire i metodi tramite le loro intestazioni
+\end{itemize}
+\item \textbf{\alert{Documentare}} l'interfaccia pubblica
+\item Identificare i \textbf{\alert{campi di esemplare}} a partire dalle intestazioni dei metodi
+\item \textbf{\alert{Realizzare}} costruttori e metodi
+\begin{itemize}
+\item Se avete problemi a realizzare un metodo forse dovete riesaminare i passi precedenti
+\end{itemize}
+\item \textbf{\alert{Collaudare}} la classe con un programma di collaudo.
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\section*{Documentazione}
+\begin{frame}[fragile]
+\frametitle{DOCUMENTAZIONE}
+\begin{block}{Documentare l'interfaccia pubblica}
+\begin{itemize}
+\item I commenti ai metodi sono \textbf{\textCl{importantissimi}} per rendere il codice comprensibile a voi ed agli altri.
+\item Java ha \textbf{\alert{delimitatori speciali}} per commenti di documentazione
+\end{itemize}
+\end{block}
+\begin{columns}
+\begin{column}{.5\textwidth}
+\begin{lstlisting}
+/**
+Preleva denaro dal conto
+@param amount importo da prelevare
+*/
+public void withdraw(double amount){
+    //corpo del metodo
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+\item \textbf{$\left[at\right]$param nomeparametro} per derscrivere un parametro specifico
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{columns}
+\begin{column}{.5\textwidth}
+\begin{lstlisting}
+/**
+Ispeziona saldo attuale
+@return saldo attuale
+*/
+public double getBalance(){
+    //corpo del metodo
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+\item \textbf{$\left[at\right]$return} per descrivere il valore restituito
+\end{itemize}
+\end{column}
+\end{columns}
+\begin{block}{}
+Inserire brevi commenti anche alla classe per illustrarne lo scopo
+\end{block}
+\begin{block}{javadoc NomeClasse.java}
+Con questo comando è possibile generare in maniera automatica un documento NomeClasse.html ben formattato con collegamenti ipertestuali
+contenente i commenti a NomeClasse.
+\end{block}
+\end{frame}
+
