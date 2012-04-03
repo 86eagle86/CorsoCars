@@ -1,0 +1,25 @@
+\begin{columns}
+\begin{column}{.5\textwidth}
+\begin{lstlisting}
+/**
+Ispeziona saldo attuale
+@return saldo attuale
+*/
+public double getBalance(){
+    //corpo del metodo
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{itemize}
+\item \textbf{$\left[at\right]$return} per descrivere il valore restituito
+\end{itemize}
+\end{column}
+\end{columns}
+\begin{block}{}
+Inserire brevi commenti anche alla classe per illustrarne lo scopo
+\end{block}
+\begin{block}{javadoc NomeClasse.java}
+Con questo comando è possibile generare in maniera automatica un documento NomeClasse.html ben formattato con collegamenti ipertestuali
+contenente i commenti a NomeClasse.
+\end{block}
