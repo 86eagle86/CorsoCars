@@ -233,6 +233,26 @@ Calcolare la radice quadrata di 2 e confrontare il risultato con 2. Se il risult
 \end{block}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Confronto di stringhe}
+\begin{block}{}
+Confrontando con l'operatore di uguaglianza due riferimenti a stringhe si verifica se i riferimenti puntano allo stesso oggetto stringa
+\end{block}
+\begin{lstlisting}
+String s1 = "Stringa";
+String s2 = s1;
+String s3 = "String";
+s3 = s3 + "a"; // s3 contiene "Stringa"
+\end{lstlisting}
+\pause
+\begin{block}{}
+\begin{itemize}
+\item Il confronto \textbf{s1 $==$ s2 è \textCl{vero}}, perché puntano allo stesso oggetto stringa
+\item Il confronto \textbf{s1 $==$ s3 è \textCl{falso}}, perché puntano ad oggetti diversi, anche se tali oggetti hanno lo stesso contenuto 
+(sono ``identici'')
+\end{itemize}
+\end{block}
+\end{frame}
 \begin{frame}
 \frametitle{Ordinamento lessicografico}
 \begin{block}{}
@@ -256,5 +276,331 @@ lessicografico}}, simile al comune ordinamento alfabetico.
 \begin{block}{}
 Scrivere un programma che chiede all'utente di inserire tre stringhe (una per riga) visualizza le stringhe in ordine lessicografico 
 crescente (una per riga)
+\end{block}
+\end{frame}
+
+\subsection*{Confronto di oggetti}
+\begin{frame}
+\frametitle{Confronto di oggetti}
+\begin{block}{}
+\begin{itemize}
+\item Come per le stringhe, l'operatore $==$ tra due variabili oggetto verifica se i due riferimenti puntano allo stesso oggetto, 
+e \alert{non} verifica l'uguaglianza tra oggetti
+\item Il metodo \textbf{equals} può essere applicato a qualsiasi oggetto, perché è definito nella classe \textbf{Object}, da cui derivano 
+tutte le classi
+\item \`E compito di ciascuna classe \textbf{ridefinire} il metodo \textbf{equals}, come per la classe \textbf{String}
+\begin{itemize}
+\item altrimenti il metodo \textbf{equals} di \textbf{Object} usa semplicemente l'operatore di uguaglianza.
+\end{itemize}
+\item il metodo \textbf{equals} di ciascuna classe deve effettuare il \textbf{\textCl{confronto delle caratteristiche}} (variabili 
+di esemplare) degli oggetti di tale classe
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section*{Alternative multiple}
+\subsection*{Sequenza di confronti}
+\begin{frame}[fragile]
+\frametitle{Sequenza di confronti}
+\begin{block}{}
+Se si hanno più di due alternative, si usa \textbf{\textCl{sequenza di confronti}}
+\end{block}
+\begin{lstlisting}
+if (voto >= 8)
+    System.out.println("Compito Eccellente");
+else if (voto >= 6)
+    System.out.println("Compito sufficiente");
+else if (voto >= 4)
+    System.out.println("Compito quasi sufficiente");
+else if (voto >= 2)
+    System.out.println("Compito insufficiente");
+else if (voto >= 0)
+    System.out.println("Compito totalmente insufficiente");
+else
+    System.out.println("Numeri negativi non validi");
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+if (voto >= 0)
+    System.out.println("Totalmente insufficiente");
+else if (voto >= 2)
+    System.out.println("Compito insufficiente");
+else if (voto >= 4)
+    System.out.println("Compito quasi insufficiente");
+else if (voto >= 6)
+    System.out.println("Compito sufficiente");
+else
+    System.out.println("Compito eccellente");
+\end{lstlisting}
+\pause
+\begin{block}{}
+\begin{itemize}
+\item Il codice seguente non funziona, perché stampa sempre \textbf{Totalmente insufficiente} per qualsiasi valore di voto. 
+\item Se si fanno confronti di tipo \textbf{maggiore di} si devono scrivere prima i valori più alti e viceversa.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+if (voto >= 8)
+    System.out.println("Compito Eccellente");
+if (voto >= 6)
+    System.out.println("Compito sufficiente");
+if (voto >= 4)
+    System.out.println("Compito quasi sufficiente");
+if (voto >= 2)
+    System.out.println("Compito insufficiente");
+if (voto >= 0)
+    System.out.println("Compito totalmente insufficiente");
+\end{lstlisting}
+\pause
+\begin{block}{}
+Se non si rendono \textbf{\textCl{mutuamente esclusive}} le alternative, usando le clausole \textbf{else}, non funziona
+\begin{itemize}
+\item se voto vale ``3'', stampa \textbf{\alert{sia}} ``Compito insufficiente'' che \textbf{\alert{sia}} ``Compito totalmente 
+insufficiente''
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection*{Diramazioni annidate}
+\begin{frame}
+\frametitle{Diramazioni annidate}
+\begin{table}[t]
+\begin{tabular}{c c c c}
+\hline
+\multicolumn{2}{c}{Se il vostro stato civile} & \multicolumn{2}{c}{Se il vostro stato civile}\\
+\multicolumn{2}{c}{è non coniugato} & \multicolumn{2}{c}{coniugato}\\
+\hline
+\textbf{Scaglione fiscale} & \textbf{Aliquota} & \textbf{Scaglione fiscale} & \textbf{Aliquota}\\
+\hline
+\$0 \ldots \$21 450 & 15\% & \$0 \ldots \$35 800 & 15\%\\
+\hline
+\$21 450 fino a \$51 900 & 28\% & \$38 500 \ldots 86 500 & 28\%\\
+\hline
+Superiore a \$51 900 & 31\% & Superiore \$86 500 & 31\%\\
+\hline
+\end{tabular}
+\end{table}
+\begin{block}{}
+Ci sono \textbf{\alert{due livelli}} nel processo decisionale
+\begin{itemize}
+\item \textbf{\textCl{Prima}}, dobbiamo scegliere lo stato civile
+\item \textbf{\textCl{Poi}}, per ciascuno stato civile, dobbiamo scegliere lo scaglione di reddito.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Esercitazione}
+\includegraphics[scale=0.45]{images/eserc1.jpg}
+\end{frame}
+
+\subsection*{Else sospeso}
+\begin{frame}[fragile]
+\begin{block}{}
+Nell'esempio precedente abbiamo notato che, se ben indentato il codice, la clausola else si riferisce al primo enunciato \textbf{if}
+La regola sintattica è che \textbf{una clausula else appartiene sempre all'enunciato if più vicino}
+\end{block}
+\begin{lstlisting}
+double cost = 5; // prezzo per USA
+if (country.equals("USA"))
+    if (state.equals("HI"))
+        cost = 10; // Hawaii piu' costoso
+else
+   cost = 20; // estero ancora piu' costoso
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{}
+L'esempio precedente svolge la funzione seguente con la giusta indentazione
+\end{block}
+\begin{lstlisting}
+double cost = 5; // prezzo per estero
+if (country.equals("USA"))
+    if (state.equals("HI"))
+        cost = 10; // Hawaii piu' costoso
+    else
+        cost = 20; // USA ancora piu' costoso
+\end{lstlisting}
+\begin{block}{}
+Il risultato è che gli stati esteri ottengono il prezzo più basso, e gli USA continentali il più alto! Il \textbf{contrario} di ciò che 
+si voleva\ldots
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+Per ottenere il risultato voluto, bisogna ``nascondere'' il secondo enunciato if all'interno di un blocco di enunciati, inserendo una 
+coppia di parentesi graffe.
+\begin{itemize}
+\item per evitare problemi con \textbf{else} sospeso, è meglio \textbf{\alert{racchiudere sempre}} il corpo di un enunciato if tra 
+parentesi graffe, anche quando sono inutili.
+\end{itemize}
+\begin{lstlisting}
+double cost = 5; // prezzo per USA
+if (country.equals("USA")){ 
+    if (state.equals("HI"))
+    cost = 10; // Hawaii piu' costoso
+}else
+    cost = 20; // estero ancora piu' costoso
+\end{lstlisting}
+\end{frame}
+
+\section*{Espressioni booleane}
+\begin{frame}
+\begin{huge}
+\begin{center}
+\textbf{\textCl{Espressioni booleane}}
+\end{center}
+\end{huge}
+\end{frame}
+
+\subsection*{Il tipo di dati booleano}
+\begin{frame}
+\begin{block}{}
+Ogni espressione in Java ha un \textbf{valore}
+\begin{itemize}
+\item \textbf{$x + 10 $} espressione aritmetica, valore \textCl{numerico};
+\item \textbf{$x < 10 $} espressione relazionale, valore \textCl{booleano};
+\end{itemize}
+Una espressione relazionale può avere solo due valori \textbf{\alert{true}} o \textbf{\alert{false}}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+\begin{itemize}
+\item Il tipo di dati \textbf{boolean}, come tutti gli altri tipi di dati, consente la definizione di variabili
+\item A volte è comodo utilizzare \textbf{\textCl{variabili booleane}} per memorizzare valori di passaggi intermedi in cui è opportuno
+scomporre verifiche troppo complesse
+\item Altre volte l'uso di una variabile booleana rende più leggibile il codice
+\end{itemize}
+\end{block}
+\begin{block}{Metodi predicativi}
+Così vengono chiamati i metodi che restituiscono valori di tipo \textbf{booleano}.
+\begin{itemize}
+\item Solitamente \textbf{\textCl{verificano}} una condizione sullo stato di oggetto
+\item Solitamente iniziano con \textbf{is} oppure \textbf{has}
+\end{itemize}
+Metodi predicativi possono essere usati come condizioni di enunciati \textbf{if}
+\end{block}
+\end{frame}
+
+\subsection*{Operatori booleani}
+\begin{frame}
+\frametitle{Gli operatori booleani o logici}
+\begin{block}{}
+Gli operatori booleani o logici servono a svolgere \textbf{\alert{operazioni su valori booleani}}
+\end{block}
+\hspace{0.7cm}\textbf{if($x > 10 \mbox{ \&\& } x < 20$)} 
+\begin{block}{}
+\begin{itemize}
+\item L'operatore \textbf{\&\&} (and) combina due o più condizioni in una sola, che risulta vera \textbf{\alert{se e solo se sono tutte 
+vere}}.
+\item L'operatore \textbf{$\|$} (or) combina due o più condizioni in una sola, se risulta vera \textbf{\alert{se e solo se almeno 
+una è vera}}
+\item L'operatore \textbf{!} (not) \textbf{\alert{inverte}} il valore di una espressione booleana
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+Più operatori booleani possono essere usati in un'unica espressione
+\end{block}
+\hspace{0.7cm}\textbf{if(($x > 10 \mbox{ \&\& } x > 20$) $\| \mbox{ } x > 30$)}
+\begin{block}{}
+La valutazione di un'espressione con operatori booleani viene effettuata con una strategia detta cortocircuito (o 
+\textbf{valutazione pigra})
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{AND}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+A & B & A$\&\&$B\\
+\hline
+true & true & true\\
+\hline
+true & false & false\\
+\hline
+false & qualsiasi & false \\
+\hline
+\end{tabular}
+\end{block}
+
+\begin{block}{OR}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+A & B & A $\|$ B\\
+\hline
+true & qualsiasi & true\\
+\hline
+false & true & true\\
+\hline
+false & false & false \\
+\hline
+\end{tabular}
+\end{block}
+
+\begin{block}{NOT}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+A & !A\\
+true & false\\
+\hline
+false & true\\
+\hline
+\end{tabular}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{}
+\begin{itemize}
+\item In un'espressione booleana con più operatori, la valutazione viene fatta da sinistra a destra, dando la precedenza all'operatore 
+\textbf{not}, poi all'operatore \textbf{and}, infine all'operatore \textbf{or}
+\item L'ordine di valutazione può comunque essere alterato dalle parentesi tonde
+\end{itemize}
+\end{block}
+\begin{lstlisting}
+if (!(x < 0 || x > 10)){
+    // esegue se x e' compreso tra 0 e 10,
+    // estremi inclusi
+}
+\end{lstlisting}
+\begin{lstlisting}
+if (!x < 0 || x > 10)
+  // esegue se x e' maggiore o uguale a 0
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{ESERCITAZIONE}
+\begin{block}{}
+Scrivere un programma che segnala all'utente se il numero intero positivo che ha introdotto corrisponde ad un anno bisestile oppure no.
+\end{block}
+\begin{block}{}
+\textbf{Suggerimento}: un anno bisestile è divisibile per 4. Fanno eccezione gli anni divisibili per 100, che non sono bisestili, e gli 
+anni divisibili per 400, che invece sono bisestili: tali eccezioni esistono però solo dopo l'adozione del calendario gregoriano, che 
+avvenne nel 1582.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{}
+Si scriva la classe Triangolo, che descrive un triangolo. 
+\end{block}
+\begin{block}{}
+Collaudare la classe Triangolo con la classe di prova TriangoloTester, che legge i dati da standard input
 \end{block}
 \end{frame}
