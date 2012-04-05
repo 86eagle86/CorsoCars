@@ -87,6 +87,13 @@ Alcune espressioni ``naturali'' con operatori relazionali sono errate, ma per fo
 \end{block}
 \end{frame}
 
+\begin{frame}
+\frametitle{ESERCITAZIONE}
+\begin{block}{}
+Si scriva la classe \textbf{Triangolo} che descrive un triangolo, la cui interfaccia pubblica vi verrà mostrata tra poco. Collaudare
+la classe \textbf{Triangolo} con la classe di prova \textbf{TriangoloTester}, che legge i dati da standard input.
+\end{block}
+\end{frame}
 \section*{Iterazioni}
 \subsection*{Ciclo WHILE}
 \begin{frame}
@@ -242,4 +249,255 @@ for (int y = 1; y <= 10; y++){
 }
 //qui y non e' piu' definita.
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Il metodo waitYears di Investment}
+Vogliamo sapere quale sarà il saldo finale del nostro investimento dopo 20 anni, con il tasso di interesse costante del 5\%.
+\begin{lstlisting}
+public class Investment{
+     ...
+     public void waitYears(int n){
+         for (int i = 1; i <= n; i++){
+             double interest = balance * rate / 100;
+             balance = balance + interest;
+         }
+         years = years +n;
+    }
+    ...
+}
+\end{lstlisting}
+\end{frame}
+
+\subsection*{Visibilità delle variabili}
+\begin{frame}[fragile]
+\frametitle{Visibilità delle variabili}
+\begin{block}{}
+Se il valore finale di una variabile di controllo del ciclo deve essere visibile al di fuori del corpo del ciclo bisogna definirla 
+\textbf{\alert{prima}} del ciclo.
+\end{block}
+\begin{block}{}
+Poiché una variabile definita nell'inizializzazione di un ciclo non è più definita dopo il corpo del ciclo, è possibile (e comodo)
+usare di nuovo lo \textbf{\textCl{stesso nome in altri cicli}}
+\end{block}
+\begin{lstlisting}
+double b = 0.3;
+for (int i = 1; i < 10 && b < c; i++){ 
+    //modifica b
+}
+// qui b e' visibile, mentre i non lo e'
+for (int i = 3; i > 0; i--)
+    System.out.println(i);
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{ESERCIZIO}
+\begin{block}{}
+Scrivere un programma che prende in ingresso una stringa e la inverte. Ad esempio se prende in ingresso \textbf{CIAO} dovrà stampare a 
+video \textbf{OAIC}
+\end{block}
+\begin{block}{Suggerimento}
+Il metodo \texttt{charAt(i)} restituisce il carattere della stringa alla i-esima posizione.
+\end{block}
+\end{frame}
+
+\section*{Cicli annidati}
+\begin{frame}[fragile]
+\frametitle{Cicli annidati}
+\begin{block}{Problema}
+Vogliamo stampare una tabella con i valori delle potenze \textbf{$x^y$}, per ogni valore di \textbf{x} tra 1 e 4 e per ogni valore
+di \textbf{y} tra 1 e 5.
+\end{block}
+\begin{center}
+\begin{tabular}{|c c c c c|}
+\hline
+1 & 1 & 1 & 1 & 1\\
+2 & 4 & 8 & 16 & 32\\
+3 & 9 & 27 & 81 & 243\\
+4 & 16 & 64 & 256 & 1024\\
+\hline
+\end{tabular}
+\end{center}
+\pause
+\begin{block}{}
+Innanzitutto stampiamo le prime 4 righe.
+\end{block}
+\begin{lstlisting}
+for (int x = 1; x <= 4; x++){ 
+    // stampa la riga x-esima della tabella
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{}
+Per stampare la riga x-esima, bigogna stampare i valori \textbf{$x^1,x^2,x^3,x^5$}, cosa che si può fare facilmente con un 
+ciclo \textbf{for}
+\end{block}
+\begin{lstlisting}
+for(int x = 1; x <= 4; x++){
+    //stampa la x-esima riga della tabella
+    for (int y = 1; y <= 5; y++){ 
+        int p = (int)Math.round(Math.pow(x, y));
+        System.out.print(p + " ");
+    }
+    System.out.println(); // va a capo
+}
+\end{lstlisting}
+\begin{block}{}
+Come si può notare la soluzione del problema avviene mediante cicli \textbf{\alert{annidati}}.
+\end{block}
+\end{frame}
+
+\subsection*{Ciclo e mezzo}
+\begin{frame}
+\frametitle{Il problema del ciclo e mezzo}
+\begin{block}{}
+Un ciclo del tipo:
+\begin{itemize}
+\item \textbf{\textCl{fai qualocsa}}, \textbf{\textCl{Verifica}} una condizione, \textbf{\textCl{fai}} qualcos'altro e ripeti il ciclo
+se la condizione è vera.
+\end{itemize}
+non ha una struttura predefinita in \textbf{Java} e deve essere realizzata con un trucco, come quello di usare una variabile
+\textbf{booleana}, detta \textbf{\alert{variabile di controllo}} del ciclo.
+\end{block}
+\begin{block}{}
+Una struttura di questo tipo si chiama anche \textbf{\textCl{ciclo e mezzo}} o ciclo ridondante.
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\begin{block}{}
+Situazione tipica: l'utente deve inserire un \textbf{insieme di valori}, la cui \textbf{dimensione non è predefinita}. Si realizza
+un ciclo \textbf{while}, dal quale si esce soltanto quando si verifica la condizione all'interno del ciclo.
+\end{block}
+\begin{lstlisting}
+boolean done = false;
+while (!done){ 
+    System.out.println("Valore?");
+    String input = in.next();
+    if (input.equalsIgnoreCase("Q"))
+        done = true;
+    else
+        ... // elabora line
+}
+\end{lstlisting}
+\begin{block}
+La lettera \textbf{Q} è un \textbf{\alert{valore sentinella}} che segnala che l'immissione dei dati è terminata
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Break, continue, e codice a spaghetti}
+\begin{block}{}
+Soluzione alternativa alla struttura ``ciclo e mezzo''
+\begin{itemize}
+\item usare un ciclo infinito \textbf{while(true)} e l'enunciato \textbf{break};
+\item L'enunciato \textbf{\textCl{break}} provoca la terminazione del ciclo;
+\item Esiste un unico enunciato \textbf{\textCl{continue}}, che fa proseguire l'esecuzione dalla fine dell'iterazione
+attuale del ciclo.
+\end{itemize}
+\end{block}
+\begin{block}{}
+L'uso di \textbf{break} e \textbf{continue} è non necessario e \textbf{\alert{sconsigliabile}}:
+\begin{itemize}
+\item perché contribuisce a creare \textbf{\alert{codice spaghetti}}
+\item ovvero rappresentato da diagrammi di flusso pieni di linee, difficili da leggere e comprendere.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Esercitazione}
+\begin{block}{1}
+Scrivere un programma che verifica se una stringa, introdotta dall'utente tramite lo standard input (un'intera riga), è una palindrome.
+\end{block}
+\begin{block}{Suggerimento}
+Una stringa è una palindrome se è composta da una sequenza di caratteri (anche non alfabetici) che possa essere letta
+allo stesso identico modo anche al contrario (es. radar, anna, inni);
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Esercitazione}
+\begin{block}{2}
+Scrivere un programma che legga una sequenza di valori in virgola mobile inseriti dall'utente: il numero di valori non è predeterminato, dopo l'introduzione di ciascun valore l'utente deve premere il tasto ``Invio'' e la sequenza di valori termina non appena l'utente introduce una sequenza predeterminata di caratteri che non rappresenta un numero in virgola mobile.
+Dopo aver letto tutti i valori inseriti dall'utente, il programma ne deve visualizzare il valore medio e la deviazione standard.
+\end{block}
+\begin{block}{Suggerimento}
+Per il calcolo della deviazione standard è consigliabile utilizzare la seguente formula: $D =\sqrt[2]{\frac{A - B*B/n}{n-1}} $
+con n il numero di valori, B è la somma di tutti i valori, e la è la somma dei quadrati di tutti i valori. 
+\end{block}
+\end{frame}
+
+\subsection*{Il ciclo Do}
+\begin{frame}
+\begin{block}{Il ciclo do}
+Capita spesso di dover eseguire il corpo di un ciclo almeno una volta, per poi ripeterne l'esecuzione se è verificata una particolare
+condizione.
+\end{block}
+\begin{block}{}
+Esempio tipico: leggere un valore di ingresso, ed eventualmente rileggerlo finché non viene introdotto un valore valido.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{itemize}
+\item Si può usare un ciclo \textbf{while} innaturale
+\end{itemize}
+\begin{lstlisting}
+//si usa un'inizializzazione ingiustificata
+double rate = 0;
+while (rate <= 0){ 
+    System.out.println("Inserire il tasso:");
+    rate = console.readDouble();
+}
+\end{lstlisting}
+\begin{itemize}
+\item ma per comodità esiste il ciclo do
+\end{itemize}
+\begin{lstlisting}
+double rate;
+do{ 
+    System.out.println("Inserire il tasso:");
+    rate = console.readDouble();
+} while (rate <= 0);
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+\begin{center}
+\begin{huge}
+\textCl{Errori e consigli}
+\end{huge}
+\end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Errori per uno scarto di uno}
+\begin{lstlisting}
+int years = 0; // o forse int years =1; ???
+while (balance < 2 * initialBalance){ 
+    // o forse balance <= 2 * initialBalance ???
+    years++;
+    double interest = balance * rate / 100;
+    balance = balance + interest;
+}
+System.out.println("Investimento raddoppiato dopo " + years + " anni.");
+\end{lstlisting}
+\begin{itemize}
+\item Provare con alcuni semplici casi di prova
+\item Investimento iniziale a 100 euro, tasso 50\%
+\begin{itemize}
+\item Allora years deve essere inizializzato a 0
+\end{itemize}
+\item Tasso di interesse 100\%
+\begin{itemize}
+\item Allora la condizione deve essere $<$ e non $<=$
+\end{itemize}
+\end{itemize}
 \end{frame}
