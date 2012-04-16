@@ -1,0 +1,94 @@
+\documentclass[pdftex,12pt]{beamer}
+\usepackage[italian]{babel}
+%~ \usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+
+
+%inclusione immagini:
+\usepackage{graphicx}
+%~ \usepackage{multicol}
+
+%inclusione codice:
+%~ \usepackage{listings}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} 
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{textcomp}
+
+
+%~ \usepackage[dvips]{graphicx}
+%\graphicspath{{figures/}}
+
+%~ NON SI POSSONO INSERIRE IMMAGINI IN EPS!
+\DeclareGraphicsExtensions{.png, .jpg, .jpeg, .pdf}
+%~ \usepackage[pdftex]{graphicx}
+
+\usepackage{acronym}
+\colorlet{newred}{red!60!black}
+\setbeamercolor{block title}{bg=newred,fg=white}%bg=background, fg= foreground
+\setbeamercolor{block body}{bg=white,fg=black}%bg=background, fg= foreground
+\setbeamercolor{frametitle}{fg=newred}
+
+\newcommand{\textCl}[1]{\textcolor{blue}{#1}}
+%\usecolortheme{whale}	
+\usetheme{CambridgeUS}
+\usepackage{textcomp}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+	language=Java,                % the language of the code
+	basicstyle=\small\footnotesize,           % the size of the fonts that are used for the code
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,                   % adds a frame around the code
+	rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+	tabsize=2,                      % sets default tabsize to 2 spaces
+	captionpos=b,                   % sets the caption-position to bottom
+	breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	title=\lstname,                   % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+	keywordstyle=\color{blue},          % keyword style
+	commentstyle=\color{orange},       % comment style
+	stringstyle=\color{magenta},         % string literal style
+	escapeinside={\%*}{*)},            % if you want to add a comment within your code
+	%  morekeywords={*,...}               % if you want to add more keywords to the set
+}
+\title[Java]{
+Corso di base di JAVA
+}
+
+\author[Mauro Donadeo]{
+	mauro.donadeo@gmail.com
+}
+
+\institute[HTLAB]{
+	Università degli Studi di Padova
+}
+\logo{\includegraphics[width=5mm]{images/logo.png}}
+\date[17.04.2012]{17 aprile 2012}
+
+\setbeamertemplate{navigation symbols}{}
+\begin{document}
+\input{slideLesson6}
+
+
+\end{document}
+

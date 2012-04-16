@@ -1,0 +1,465 @@
+\begin{frame}
+	\setbeamercolor{block body}{bg = yellow}
+	\begin{block}{}
+		\begin{center}
+			{\large\textbf{Corso di base JAVA}}\\
+			\itshape{Mauro Donadeo}\\
+			mail: mauro.donadeo@gmail.com
+		\end{center}
+	\end{block}
+	\setbeamercolor{block body}{bg = white}
+	\begin{block}{}	
+		\begin{center}
+			\begin{huge}
+			Metodi e Variabili statiche, Gestione File, Array
+			\end{huge}\\
+			\includegraphics[width = 30mm]{images/java-logo.jpg}
+		\end{center}
+	\end{block}	
+\end{frame}
+
+\section*{Membri di classe statici}
+\subsection*{Metodi}
+\begin{frame}[fragile]
+\frametitle{Metodi statici}
+\begin{block}{}
+Esistono classi che non servono a creare oggetti ma contengono \textbf{\textCl{metodi statici}} e \textbf{costanti}
+\begin{itemize}
+\item Queste si chiamano solitamente \textbf{\alert{classi di unità}}
+\item La classe \textbf{Math} è un esempio di questo tipo di classi
+\end{itemize}
+\end{block}
+\pause
+\begin{lstlisting}
+public class Financial{
+    public static double percentOf(double p, double a){
+       return (p / 100) * a; 
+    }
+// qui si possono aggiungere altri metodi finanziari
+}
+\end{lstlisting}
+\begin{block}{}\footnotesize
+Non è necessario \textbf{creare oggetti} di tipo \textbf{Financial} per usare i metodi della classe\\
+\hspace{0.8cm} \textbf{double tax = Financial.percentOf(taxRate,total);}
+\end{block}
+\end{frame}
+
+\subsection*{Variabili}
+\begin{frame}[fragile]
+\frametitle{Variabili statiche}
+\begin{block}{}
+Vogliamo modificare \textbf{\textCl{BankAccount}} in modo che:
+\begin{itemize}
+\item il suo stato contenga anche \textbf{\alert{numero di conto}}
+\begin{lstlisting}
+public class BankAccount
+{ ...
+    private int accountNumber;
+}
+\end{lstlisting}
+\item il numero di conto sia assegnato dal costruttore:
+\begin{itemize}
+\item ogni conto deve avere un numero diverso
+\item i numeri assegnati devono essere progressivi, iniziano da 1.
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Soluzione}
+\begin{block}{Prima idea}
+Usiamo una variabile per memorizzare l'ultimo numero di conto assegnato
+\end{block}
+\begin{lstlisting}
+public class BankAccount
+{ ...
+    private int accountNumber;
+    private int lastAssignedNumber;
+...
+    public BankAccount()
+    { 
+        lastAssignedNumber++;
+        accountNumber = lastAssignedNumber;
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+Il costruttore non funziona perché?
+\end{block}
+\begin{block}{}
+Questo costruttore non funziona perché \textbf{\alert{lastAssignedNumber}} è una \textbf{variabile di esemplare}:
+\begin{itemize}
+\item ne esiste una copia per ogni oggetto;
+\item il risultato è che tutti i conti creati hanno un numero di conto uguale a 1
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Variabili statiche}
+\begin{block}{}
+Ci serve una \textbf{\alert{variabile condivisa da tutti gli oggetti della classe}}
+\begin{itemize}
+\item una variabile con questa semantica si ottiene con la dichiarazione \textbf{\textCl{static}}
+\end{itemize}
+\end{block}
+\hspace{0.8cm}\textbf{private \textCl{static} int \alert{lastAssignedNumber};}
+\begin{block}{}
+\begin{itemize}
+\item Una vatiabile \textbf{\textCl{static} (variabile di classe)} è condivisa da tutti gli oggetti della classe;
+\item Ne esiste \textbf{\alert{un'unica copia}} indipendentemente da quanti oggetti siano creati.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+public class BankAccount{ 
+    ...
+    private int accountNumber;
+    private static int lastAssignedNumber = 0;
+    ...
+    public BankAccount(){ 
+        lastAssignedNumber++;
+        accountNumber = lastAssignedNumber;
+    }
+}
+\end{lstlisting}
+\begin{block}{}
+Ogni metodo (o costruttore) di una classe può \textbf{\textCl{accedere}} alle variabili statiche della classe 
+\textbf{\textCl{modificarle}}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+\begin{itemize}
+\item Le variabili statiche \textbf{non} possono (da un punto di vista logico) essere inizializzate nei costruttori:
+\begin{itemize}
+\item Il loro valore verrebbe inizializzato nuovamente \textbf{\textCl{ogni volta che si costruisce un oggetto}}, perdendo
+il vantaggio di avere una variabile condivisa.
+\end{itemize}
+\item Bisogna inizializzarle quando queste si dichiarano;
+\item Questo può valere anche per le variabili di esemplare, anziché usare un costruttore:
+\begin{itemize}
+\item \textbf{non} è una buona pratica di programmazione.	
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\`E invece pratica comune (senza controindicazioni) usare \textbf{costanti} statiche, come la classe \textbf{\alert{Math}}.
+\begin{lstlisting}
+public class Math
+{ ...
+    public static final double PI =3.14159265358979323846;
+}
+\end{lstlisting}
+\begin{block}{}
+Tali costanti sono di norma \textbf{\textCl{public}} e per ottenere il loro valore si usa il nome della classe seguito dal 
+punto e dal nome della costante, \textbf{\alert{Math.PI}}
+\end{block}
+\end{frame}
+
+
+\section*{Cicli di vita di una variabile}
+\begin{frame}
+\begin{block}{}
+Sappiamo che in Java esistono quattro diversi tipi di variabili:
+\begin{itemize}
+\item variabili \textbf{\textCl{locali}} (all'interno di un metodo)
+\item variabili \textbf{\textCl{parametro}} (dette \textbf{parametri formali})
+\item variabili \textbf{\textCl{di esemplare}} (o di istanza)
+\item variabili \textbf{\textCl{statiche}} o di classe
+\end{itemize}
+\end{block}
+\begin{block}{}
+Hanno in comune il fatto di contenere valori appartenenti ad un tipo ben preciso. Differiscono per quanto riguarda il loro 
+\textbf{\alert{ciclo di vita}}
+\begin{itemize}
+\item cioè nell'intervallo di tempo in cui, dopo essere state create, continuano ad occupare lo spazio in memoria riservato loro.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Variabile locale}
+\begin{itemize}
+\item \textbf{\alert{viene creata}} quando viene eseguito l'enunciato in cui è definita;
+\item \textbf{\alert{viene eliminata}} quando l'esecuzione del programma esce dal \textbf{\textCl{blocco di enunciati}} in cui la 
+variabile è definita
+\end{itemize}
+\end{block}
+\vspace{0.9cm}
+\begin{block}{Variabile parametro (formale)}
+\begin{itemize}
+\item \textbf{\alert{viene creata}} quando viene invocato il metodo
+\item \textbf{\alert{viene eliminata}} quando l'esecuzione del metodo termina
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Variabile statica}
+\begin{itemize}
+\item \textbf{\alert{viene creata}} quando la macchina virtuale Java carica la classe per la prima volta
+\item \textbf{\alert{viene eliminata}} quando l'esecuzione del metodo termina
+\item a fini pratici possiamo dire che \textbf{esiste sempre}
+\end{itemize}
+\end{block}
+\vspace{0.9cm}
+\begin{block}{Variabile di esemplare}
+\begin{itemize}
+\item \textbf{\alert{viene creata}} quando viene creato l'oggetto a cui appartiene
+\item \textbf{\alert{viene eliminata}} quando l'oggetto viene eliminato
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection*{Visibilità di variabili locali}
+\begin{frame}[fragile]
+\begin{block}{}
+\begin{itemize}
+\item Per evitare conflitti, dobbiamo conoscere l'\textbf{\textCl{amito di visibilità}} di ogni tipo di variabile
+\begin{itemize}
+\item Ovvero la \textbf{porzione} del programma all'interno della quale si può accedere ad essa;
+\end{itemize}
+\item \textbf{Esempio:} due variabili locali con lo stesso nome. Funziona perché gli ambiti di visibilità sono \textbf{\alert{sono
+disgiunti}}
+\end{itemize}
+\end{block}
+\begin{lstlisting}
+public class RectangleTester{
+    public static double area(Rectangle rect){
+        double r = rect.getWidth() * rect.getHeight();
+        return r; }
+    public static void main(String[] args){ 
+        Rectangle r = new Rectangle(5, 10, 20, 30);
+        double a = area(r);
+        System.out.println(r); }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+Anche qui gli ambiti di visibilità sono \textbf{disgiunti}
+\begin{lstlisting}
+if (x >= 0){ 
+    double r = Math.sqrt(x);
+    . . . } // la visibilita' di r termina qui
+else{ 
+    Rectangle r = new Rectangle(5, 10, 20, 30);
+    // OK, questa e' un'altra variabile r
+. . . 
+}
+\end{lstlisting}
+Invece l'ambito di visibilità di una variabile \textbf{non} può contenere la definizione di un'altra variabile locale con lo stesso 
+nome:
+\begin{lstlisting}
+Rectangle r = new Rectangle(5, 10, 20, 30);
+if (x >= 0)
+{ 
+    double r = Math.sqrt(x);
+    // Errore: non si puo' dichiarare un'altra var. r qui
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Visibilità di membri di classe}
+\begin{itemize}
+\item Membri \textbf{\textCl{private}} hanno visibilità di classe
+\begin{itemize}
+\item Qualsiasi metodo di una classe può accedere a variabili e metodi della stessa classe
+\end{itemize}
+\item Membri \textbf{\textCl{public}} hanno visibilità al di fuori della classe
+\begin{itemize}
+\item A patto di renderne \textbf{\alert{qualificato}} il nome, ovvero:
+\begin{itemize}
+\item Specificare il nome della classe per membri static: \textbf{Math.PI, Math.sqrt(x)}
+\end{itemize}
+\item Specificare l'oggetto per i membri \textbf{non static}
+\end{itemize}
+\item Non è necessario qualificare i membri appartenenti ad una stessa classe.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section*{Array}
+\begin{frame}
+\begin{block}{}
+\begin{huge}
+\begin{center}
+\textCl{Array}
+\end{center}
+\end{huge}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Problema}
+\begin{itemize}
+\item \textbf{\alert{Scrivere un programma che legge dallo standard input una sequenza di dieci numeri in virgola mobile, uno per riga}}
+\item \textCl{chiedere all'utente un numero intero \textbf{index} e visualizzare il numero che nella sequenza occupava 
+la posizione indicata da \textbf{index}}.
+\end{itemize}
+\end{block}
+\begin{block}{}
+\begin{itemize}
+\item Occorre \textbf{memorizzare tutti i valori della sequenza}
+\pause
+\item Potremmo usare dici variabili diverse per memorizzare i valori, selezionati poi con una lunga sequenza di alternative,
+\textbf{\textCl{ma se i valori dovessero essere mille?}}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Memorizzare una serie di valori}
+\begin{block}{}
+Lo strumento messo a disposizione dal linguaggio Java per memorizzare una sequenza di dati si chiama \textbf{\textCl{array}}
+(che significa ``sequenza ordinata'')
+\begin{itemize}
+\item La struttura \textbf{array} esiste in quasi tutti i linguaggi di programmazione
+\end{itemize}
+\end{block}
+\begin{block}{}
+Un array in Java è \textbf{\textCl{un oggetto}} che realizza una \textbf{\alert{raccolta di dati che siano tutti dello stesso tipo}}.\\
+Potremo avere quindi un array di numeri interi, array di numeri in virgola mobile, array di stringhe, array di conti bancari.
+\end{block}
+\end{frame}
+
+\subsection*{Costruire un array}
+\begin{frame}
+\begin{block}{Costruire un array}
+Come ogni \textbf{oggetto}, un array deve essere \textbf{costruito} con l'operatore \textbf{\alert{new}}, dichiarando il 
+\textbf{\textCl{tipo di dati}} che potrà contenere. 
+\end{block}
+\hspace*{1 cm}\textbf{\alert{new} \textCl{double} $\left[10\right]$}\\
+\begin{block}{}
+Il tipo di dati di un array può essere qualsiasi tipo di dati valido in Java
+\begin{itemize}
+\item uno dei tipi di dati fondamentali o una classe
+\end{itemize}
+e nella costruzione deve essere seguito da una \textbf{coppia di parentesi quadre} che contiene la \textbf{dimensione} dell'array,
+cioè il numero di elementi che potrà contenere.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Riferimento ad un array}
+\begin{block}{}
+Come succede con la costruzione di ogni oggetto, l'operatore \textbf{new} restituisce un \textbf{riferimento} all'array appena 
+creato, che può essere memorizzato in una \textbf{\alert{variabile oggetto}} dello stesso tipo.
+\end{block}
+\hspace{1.0cm} \textbf{\textCl{double}$\left[\right]$ \alert{values} $=$ new \textCl{double}$\left[10\right]$}
+\begin{block}{Attenzione}
+Nella definizione della variabile oggetto devono essere presenti le parentesi quadre, ma non deve essere indicata la dimensione 
+dell'array; la variabile potrà riferirsi solo ad array di quel tipo, mi di qualunque dimensione.
+\end{block}
+\end{frame}
+
+\subsection*{Utilizzare un array}
+\begin{frame}
+\frametitle{Utilizzare un array}
+\begin{block}{}
+Al momento della costruzione, tutti gli elementi dell'array vengono inizializzati ad un valore, seguendo \textbf{le stesse regole
+viste per le variabili esemplare}
+\end{block}
+\begin{block}{}
+\begin{itemize}
+\item Per accedere ad un elemento dell'array si usa:\\
+\hspace{0.7cm}\textbf{\textCl{double}$\left[\right]$ \alert{values} $=$ new \textCl{double}$\left[10\right]$};\\
+\hspace{0.7cm}\textbf{\textCl{double} \alert{oneValue} $=$ \alert{values}$\left[3\right]$};
+\item La stessa sintassi si usa per \textbf{modificare} un elemento dell'array\\
+\hspace{0.7cm}\textbf{\textCl{double}$\left[\right]$ \alert{values} $=$ new \textCl{double}$\left[10\right]$};\\
+\hspace{0.7cm}\textbf{\alert{values}$\left[ 5\right]$ $=$ 3.4};
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+double[] values = new double[10];
+double oneValue = values[3];
+values[5] = 3.4;
+\end{lstlisting}
+\begin{block}{}
+\begin{itemize}
+\item Il numero utilizzato per accedere ad un particolare elemento dell'array si chiama \textbf{\textCl{indice}}
+\item L'indice può assumere un valore compreso tra \textbf{0 (incluso)} e la \textbf{dimensione} dell'array (\textbf{esclusa}), cioè 
+segue le stesse convenzioni viste per le posizioni dei caratteri di una stringa:
+\begin{itemize}
+\item il primo elemento ha indice zero
+\item l'ultimo elemento ha indice \textbf{dimensione - 1}
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+Un array è un oggetto un pò strano: \textbf{non ha metodi pubblici, né statici né di esemplare}
+\begin{itemize}
+\item L'unico elemento pubblico di un oggetto di tipo array è la sua dimensione a cui si accede attraverso la sua variabile pubblica
+di esemplare \textbf{\alert{length}} (attenzione, non è un metodo).
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+\begin{huge}
+\begin{center}
+\textCl{Leggere/scrivere file di testo}
+\end{center}
+\end{huge}
+\end{block}
+\end{frame}
+
+\section*{Gestione dei file}
+\subsection*{Leggere un file di testo}
+\begin{frame}
+\frametitle{Leggere un file di testo}
+\begin{block}{Il modo più semplice}
+\begin{itemize}
+\item Creare un oggetto ``lettore di file'' (\textbf{FileReader})
+\item Creare un oggetto \textbf{Scanner}, che già conosciamo
+\item \textbf{\alert{Collegare}} l'oggetto \textbf{Scanner} al lettore di file invece che all'input standard
+\end{itemize}
+\hspace{0.8cm}\textbf{\textCl{FileReader} reader = new \textCl{FileReader}(``\alert{input.txt}'')}\\
+\hspace{0.8cm}\textbf{\textCl{Scanner} in = new \textCl{Scanner}(\alert{reader});}
+\end{block}
+\begin{block}{}
+In questo modo possiamo usare i consueti metodi \textbf{Scanner} per leggere i dati nel file;
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{La classe FileReader}
+\begin{block}{}
+Prima di leggere caratteri da un file (esistente) occorre \textbf{\textCl{aprire il file in lettura}}	
+\begin{itemize}
+\item Questa operazione si traduce in Java nella creazione di un oggetto di tipo \textbf{FileReader}\\
+\hspace{0.8cm}\textbf{FileReader reader = new FileReader(``file.txt'');}
+\item il costruttore necessita del nome del file sotto forma di \textbf{\textCl{stringa}:} ``file.txt''
+\end{itemize}
+\end{block}
+\begin{block}{Attenzione}
+se il file non esiste viene lanciata l'eccezione \textbf{FileNotFoundException} a gestione obbligatoria.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Leggere file con FileReader}
+\begin{block}{}
+Con l'oggetto di tipo \textbf{FileReader} si può invocare il metodo \textbf{read()} che restituisce un numero intero a ogni 
+invocazione
+\end{block}
+\end{frame}
