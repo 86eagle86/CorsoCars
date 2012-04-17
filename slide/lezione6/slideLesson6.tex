@@ -11,7 +11,7 @@
 	\begin{block}{}	
 		\begin{center}
 			\begin{huge}
-			Metodi e Variabili statiche, Gestione File, Array
+			Metodi e Variabili statiche, Scomposizione di stringhe, Array
 			\end{huge}\\
 			\includegraphics[width = 30mm]{images/java-logo.jpg}
 		\end{center}
@@ -290,6 +290,122 @@ if (x >= 0)
 \end{block}
 \end{frame}
 
+
+\section*{Scomposizione di stringhe}
+\begin{frame}
+\begin{block}{}
+\begin{huge}
+\begin{center}
+\textCl{Scomposizione di stringhe}
+\end{center}
+\end{huge}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+Tutti gli esempi visti fino ad ora prevedevano l'inserimento dei \textbf{dati in ingresso uno per riga}, ma spesso è più comodo o più 
+naturale per l'utente inserire \textbf{più dati per riga}
+\begin{itemize}
+\item ad esempio, cognome dello studente e voto
+\end{itemize}
+\end{block}
+\begin{block}{}
+Dato che \textbf{\alert{nextLine}} legge un'intera riga, bisogna imparare ad estrarre le sottostringhe relative ai singoli
+dati che compongono la riga
+\begin{itemize}
+\item non si può usare \textbf{\alert{substring}}, perché in generale non sono note la lunghezza e la posizione dei singoli 
+dati nella riga.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{}
+Per scomporre una stringa in token usando \textbf{\textCl{Scanner}}, innanzitutto bisogna creare un oggetto della classe
+fornendo \textbf{\alert{la stringa}} come parametro al costruttore
+\end{block}
+\hspace{0.9cm}\textbf{Scanner in = new Scanner(System.in);}\\
+\hspace{0.9cm}\textbf{String line = in.nextLine();}\\
+\hspace{0.9cm}\textbf{Scanner t = \textCl{new Scanner(\alert{line})};}
+\begin{block}{}
+Successive invocazioni del metodo \textbf{\alert{next}} restituiscono successive sottostringhe, fin quando l'invocazione di
+\textbf{\textCl{hasNext}} restituisce true
+\end{block}
+\begin{lstlisting}
+while (t.hasNext()){ 
+   String token = t.next();
+   // elabora token
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Esempio: contare le parole di un testo}
+\begin{lstlisting}
+import java.util.Scanner;
+public class WordCounter{
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        int count = 0;
+        while (in.hasNextLine()){
+        	String line = in.nextLine();
+        	if (line.equals("Q"))
+				break;
+        	Scanner t = new Scanner(line);
+            while (t.hasNext()){
+                t.next(); // non devo elaborare
+                count++;
+            }
+        }
+        System.out.println(count + " parole");
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+\subsection*{Esercitazione}
+\begin{frame}
+\begin{block}{}
+Scrivere un programma che:
+\begin{itemize}
+\item chiede all'utente di introdurre due stringhe (una per riga), s1 e s2; ciascuna stringa è costituita da tutti i caratteri 
+presenti sulla riga, compresi eventuali spazi iniziali, finali e/o intermedi
+\item verificare se la stringa \textbf{s2}, è una sottostringa \textbf{s1}, cioè se esiste una coppia di numeri interi, x e y, per
+cui \textbf{s1} a partire da x fino a y contiene la stringa \textbf{s2};
+\end{itemize}
+\end{block}
+\begin{block}{}
+Il programma può usare, della classe \textbf{String}, i soli metodi \textbf{charAt} e \textbf{length}
+\end{block}
+\end{frame}
+
+\subsection*{Esercitazione}
+\begin{frame}
+\begin{itemize}
+\item Un conto corrente possiede un numero di conto progressivo: ad un nuovo conto corrente viene assegnato il primo numero intero
+disponibile;
+\item I metodi deposit e withdraw restituiscono un valore di tipo logico, true se e solo se l'operazione è ammissibile e va a buon fine (ma non devono visualizzare nessun messaggio d'errore); se l'operazione non è ammissibile, il saldo del conto non deve essere modificato
+\end{itemize}
+Modificare la classe che effettua il test del conto bancario e accetta ripetutamente comandi dall'utente introdotti	da tastiera,
+finché l'utente non introduce il comando di terminazione del programma:
+\begin{table}\footnotesize
+\begin{tabular}{|l|l|}
+\hline
+Q & Quit il programma termina;\\
+\hline
+B & Balance: visualizza il saldo del conto;\\
+\hline
+D x & Deposit versa nel conto la somma x;\\
+\hline
+W x & Withdraw: preleva dal conto la somma x;\\
+\hline
+A x & Add interest: accredita sul conto gli interessi, calcolati in base\\ & alla percentuale x del saldo attuale;\\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+
 \section*{Array}
 \begin{frame}
 \begin{block}{}
@@ -411,55 +527,172 @@ Un array è un oggetto un pò strano: \textbf{non ha metodi pubblici, né static
 di esemplare \textbf{\alert{length}} (attenzione, non è un metodo).
 \end{itemize}
 \end{block}
+\hspace{0.7cm}\textbf{double$\left[\right]$ values = new double$[10]$}\\
+\hspace{0.7cm}\textbf{int \alert{a} = values.\textCl{length};}
 \end{frame}
 
 \begin{frame}
+\frametitle{Esercitazione}
 \begin{block}{}
-\begin{huge}
-\begin{center}
-\textCl{Leggere/scrivere file di testo}
-\end{center}
-\end{huge}
-\end{block}
-\end{frame}
-
-\section*{Gestione dei file}
-\subsection*{Leggere un file di testo}
-\begin{frame}
-\frametitle{Leggere un file di testo}
-\begin{block}{Il modo più semplice}
 \begin{itemize}
-\item Creare un oggetto ``lettore di file'' (\textbf{FileReader})
-\item Creare un oggetto \textbf{Scanner}, che già conosciamo
-\item \textbf{\alert{Collegare}} l'oggetto \textbf{Scanner} al lettore di file invece che all'input standard
-\end{itemize}
-\hspace{0.8cm}\textbf{\textCl{FileReader} reader = new \textCl{FileReader}(``\alert{input.txt}'')}\\
-\hspace{0.8cm}\textbf{\textCl{Scanner} in = new \textCl{Scanner}(\alert{reader});}
-\end{block}
-\begin{block}{}
-In questo modo possiamo usare i consueti metodi \textbf{Scanner} per leggere i dati nel file;
-\end{block}
-\end{frame}
-
-\begin{frame}
-\frametitle{La classe FileReader}
-\begin{block}{}
-Prima di leggere caratteri da un file (esistente) occorre \textbf{\textCl{aprire il file in lettura}}	
-\begin{itemize}
-\item Questa operazione si traduce in Java nella creazione di un oggetto di tipo \textbf{FileReader}\\
-\hspace{0.8cm}\textbf{FileReader reader = new FileReader(``file.txt'');}
-\item il costruttore necessita del nome del file sotto forma di \textbf{\textCl{stringa}:} ``file.txt''
+\item Scrivere un programma che legge dallo standard input una sequenza di dieci numeri in virgola mobile, uno per riga
+\item chiedere all'utente un numero intero \textbf{index} e visualizzare il numero che nella sequenza occupava 
+la posizione indicata da \textbf{index}
 \end{itemize}
 \end{block}
-\begin{block}{Attenzione}
-se il file non esiste viene lanciata l'eccezione \textbf{FileNotFoundException} a gestione obbligatoria.
+\end{frame}
+\subsection*{Inizializzazione di un array}
+
+\begin{frame}[fragile]
+\frametitle{Inizializzazione di un array}
+\begin{block}{}
+Quando si assegnano i valori agli elementi di un array si può procedere così:
+\end{block}
+\begin{lstlisting}
+int[] primes = new int[3];
+primes[0] = 2;
+primes[1] = 3;
+primes[2] = 5;
+\end{lstlisting}
+ma se si conoscono tutti gli elementi da inserire si può usare questa sintassi (\textbf{\textCl{migliore}})\\
+\hspace{0.9cm} \textbf{int$[]$ primes = \textCl{$\{2,3,5\}$};}\\
+oppure (\textbf{\alert{accettabile ma meno chiara}})\\
+\hspace{0.9cm} \textbf{int$[]$ primes = \alert{new int$[]\{2,4,5\}$};}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Passare un array come parametro}
+\begin{block}
+Spesso si scrivono metodi che ricevono array come parametri espliciti
+\end{block}
+\begin{lstlisting}
+public static double sum(double[] values){
+    if (values == null){
+        System.out.println("errore elemento non inizializzato");
+        return null;
+    }
+    if (values.length == 0)
+        return 0;
+    double sum = 0;
+    for (int i = 0; i < values.length; i++)
+        sum = sum + values[i];
+    return sum;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{}
+Un metodo può anche usare un array come \textbf{\textCl{valore di ritorno}} 
+\end{block}
+\begin{lstlisting}
+public static int[] resize(int[] oldArray, int newLength){ 
+    if (newLength < 0 || oldArray == null){
+        System.out.println("parametri non corretti");
+        return null;
+    }
+    int[] newArray = new int[newLength];
+    int count = oldArray.length;
+    if (newLength < count)
+        count = newLength;
+    for (int i = 0; i < count; i++)
+        newArray[i] = oldArray[i];
+    return newArray;
+}
+...
+int[] values = {1, 7, 4};
+values = resize(values, 5);
+values[4] = 9;
+...
+\end{lstlisting}
+\end{frame}
+
+\subsection*{Copiare array}
+\begin{frame}[fragile]
+\frametitle{Copiare un array}
+\begin{block}{}
+Ricordando che una variabile che si riferisce ad un array è una variabile oggetto
+\begin{itemize}
+\item contiene un riferimento all'oggetto
+\end{itemize}
+\end{block}
+\begin{block}{}
+Copiando il contenuto della variabile in un'altra \textbf{\textCl{non si copia l'array}} ma si ottiene un altro riferimento 
+allo \textbf{\alert{stesso oggetto array}}
+\end{block}
+\begin{columns}
+\begin{column}{.5\textwidth}
+\begin{lstlisting}
+double[] x = new double[6]; 
+double[] y = x;
+\end{lstlisting}
+\end{column}
+\begin{column}{0.5\textwidth}
+\centering
+\includegraphics[scale=0.7]{images/array.jpg}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{}
+Se si vuole ottenere \textbf{una copia dell'array}, bisogna:
+\begin{itemize}
+\item \textbf{\textCl{creare un nuovo array dello stesso tipo e con la stessa dimensione}}
+\item \textbf{copiare ogni elemento del primo array nel corrispondente elemento del secondo array}
+\end{itemize}
+\end{block}
+\begin{lstlisting}
+double[] values = new double[10];
+// inseriamo i dati nell'array
+...
+double[] otherValues = new double[values.length];
+for (int i = 0; i < values.length; i++)
+    otherValues[i] = values[i];
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+Invece di usare un ciclo è possibile (e \textbf{più efficiente}) invocare il metodo statico 
+\textbf{\textCl{array}\alert{c}\textCl{opy}} della classe \textbf{\alert{System}}
+\end{block}
+\hspace{0.9cm}\textbf{\alert{System}.\textCl{arraycopy}(values,0,otherValues,0,values.legnth);}
+\begin{block}{}
+Il metodo \textbf{\alert{System}.\textCl{arraycopy}} consente di copiare una porzione di un array in un altro array
 \end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Leggere file con FileReader}
+\frametitle{System.arraycopy}
 \begin{block}{}
-Con l'oggetto di tipo \textbf{FileReader} si può invocare il metodo \textbf{read()} che restituisce un numero intero a ogni 
-invocazione
+\textbf{System.out.println(\alert{from},\textCl{fromStart},\alert{to},\textCl{toStart},count);}
+\end{block}
+\centering
+\includegraphics[scale=0.6]{images/copy.jpg}
+\end{frame}
+
+\begin{frame}
+\frametitle{Esercitazione}
+\begin{block}{}
+Il crivello di Eratostene è un noto algoritmo per la ricerca dei numeri primi minori di un certo valore massimo MAX, ed è così 
+specificato
+\begin{itemize}
+\item i predispone un array di MAX valori booleani ogni elemento dell'array ``rappresenta'' il numero intero corrispondente al 
+proprio indice nell'array
+\item se e solo se l'elemento è true, allora il numero corrispondente è stato eliminato dall'insieme dei numeri primi, cioè non è un 
+numero primo
+\item all'inizio si suppone che tutti i numeri siano primi; successivamente si considera ciascun numero intero maggiore di uno,
+in ordine crescente, e si eliminano tutti i numeri che ne sono multipli, contrassegnando opportunamente l'array.
+\item al termine, i numeri rimasti sono tutti e soli i numeri primi cercati, non essendo multipli di alcun numero.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{}
+Scrivere un programma che realizza il Crivello di Eratostene per identificare i numeri primi minori di un valore (intero positivo)
+MAX fornito dall'utente attraverso l'ingresso standard.
 \end{block}
 \end{frame}
